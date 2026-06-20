@@ -1,0 +1,10 @@
+:root {
+  --neon-cyan: #ffb86c;
+  --neon-blue: #ff9f40;
+  --neon-glow: rgba(255, 184, 108, 0.45);
+  --neon-blue-glow: rgba(255, 159, 64, 0.4);
+
+  --text-primary: #fff7f0;
+  --text-secondary: #ffe0c2;
+  --text-muted: #d6bfa5;
+}
