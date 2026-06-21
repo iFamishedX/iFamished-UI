@@ -471,56 +471,72 @@ h1, h2, h3, h4 {
 .profile-tagline { color: var(--neon-cyan); font-weight: 500; margin-bottom: var(--space-3); }
 .profile-bio p { margin-bottom: var(--space-2); text-align: left; }
 
-/* ----- Timeline ----- */
+/* ----- NEW TIMELINE (GRID-BASED) ----- */
 .timeline {
   position: relative;
-  max-width: 720px;
+  display: grid;
+  gap: var(--space-4);
+  padding-left: 0;
   margin: 0 auto;
-
-  /* FIX: give the text enough room */
-  padding-left: 80px;
-
-  overflow: visible;
+  max-width: 720px;
 }
 
+/* Vertical line */
 .timeline::before {
   content: "";
   position: absolute;
-
-  /* FIX: place the line inside the gutter */
-  left: 28px;
-
-  top: 8px;
-  bottom: 8px;
+  left: 18px; /* line position */
+  top: 0;
+  bottom: 0;
   width: 2px;
   background: linear-gradient(to bottom, var(--neon-cyan), transparent);
+  opacity: 0.7;
 }
 
+/* Each item uses a 2-column grid:
+   [dot column] [content column] */
 .timeline-item {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  align-items: start;
   position: relative;
-  margin-bottom: var(--space-3);
-  overflow: visible;
 }
 
-.timeline-item::before {
-  content: "";
-  position: absolute;
-
-  /* FIX: dot shares EXACT anchor with line */
-  left: 28px;
-
-  top: 6px;
-  width: 16px;
-  height: 16px;
+/* Dot */
+.timeline-dot {
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: var(--glass-bg-strong);
-  backdrop-filter: blur(12px);
   border: 2px solid var(--neon-cyan);
-  box-shadow: 0 0 14px var(--neon-glow);
-
-  /* FIX: center dot on the line */
-  transform: translateX(-50%);
+  box-shadow: 0 0 12px var(--neon-glow);
+  margin-top: 4px;
+  margin-left: 11px; /* centers dot on the line */
 }
+
+/* Content */
+.timeline-content {
+  padding-left: var(--space-1);
+}
+
+.timeline-meta {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-family: var(--mono);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.timeline-content h3 {
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.timeline-content p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
 
 /* ----- Forms ----- */
 .contact-form { display: flex; flex-direction: column; gap: var(--space-2); }
