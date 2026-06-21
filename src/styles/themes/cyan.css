@@ -1,10 +1,21 @@
 :root {
+  /* Aqua palette */
   --neon-cyan: #22d3ee;
   --neon-blue: #3b82f6;
   --neon-glow: rgba(34, 211, 238, 0.45);
   --neon-blue-glow: rgba(59, 130, 246, 0.4);
 
+  /* Glass + borders */
+  --glass-bg: rgba(34, 211, 238, 0.08);
+  --glass-bg-strong: rgba(34, 211, 238, 0.14);
+  --glass-border: rgba(34, 211, 238, 0.25);
+  --glass-border-strong: rgba(34, 211, 238, 0.45);
+
+  /* Text colors */
   --text-primary: #f8fafc;
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
+
+  /* Background */
+  --background: #0a0e27;
 }

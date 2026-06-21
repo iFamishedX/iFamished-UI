@@ -1,0 +1,20 @@
+:root {
+  /* Core red palette */
+  --neon-cyan: #ff3b3b; /* bright red accent */
+  --neon-blue: #c21818; /* deeper red for gradients */
+  --neon-glow: rgba(255, 60, 60, 0.6);
+
+  /* Glass + borders */
+  --glass-bg: rgba(255, 40, 40, 0.08);
+  --glass-bg-strong: rgba(255, 40, 40, 0.14);
+  --glass-border: rgba(255, 60, 60, 0.25);
+  --glass-border-strong: rgba(255, 60, 60, 0.45);
+
+  /* Text colors */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.75);
+  --text-muted: rgba(255, 255, 255, 0.55);
+
+  /* Background */
+  --background: #0a0e27; /* keep your dark base */
+}

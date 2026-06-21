@@ -1,10 +1,21 @@
 :root {
-  --neon-cyan: #ffb86c;
-  --neon-blue: #ff9f40;
-  --neon-glow: rgba(255, 184, 108, 0.45);
-  --neon-blue-glow: rgba(255, 159, 64, 0.4);
+  /* Orange palette */
+  --neon-cyan: #ff8a00; /* bright orange */
+  --neon-blue: #ff5e00; /* deeper orange */
+  --neon-glow: rgba(255, 138, 0, 0.45);
+  --neon-blue-glow: rgba(255, 94, 0, 0.4);
 
-  --text-primary: #fff7f0;
-  --text-secondary: #ffe0c2;
-  --text-muted: #d6bfa5;
+  /* Glass + borders */
+  --glass-bg: rgba(255, 138, 0, 0.08);
+  --glass-bg-strong: rgba(255, 138, 0, 0.14);
+  --glass-border: rgba(255, 138, 0, 0.25);
+  --glass-border-strong: rgba(255, 138, 0, 0.45);
+
+  /* Text colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #f2d7c2;
+  --text-muted: #c9a88a;
+
+  /* Background */
+  --background: #0a0e27;
 }
