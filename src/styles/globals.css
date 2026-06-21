@@ -9,10 +9,6 @@
 
 /* ===== Non-color tokens ===== */
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.06);
-  --glass-bg-strong: rgba(255, 255, 255, 0.09);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-border-strong: rgba(255, 255, 255, 0.18);
   --glass-shadow: rgba(0, 0, 0, 0.35) 0 8px 32px;
 
   --space-1: 8px;
