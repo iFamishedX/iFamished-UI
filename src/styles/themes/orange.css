@@ -1,7 +1,7 @@
 :root {
   /* Orange palette */
-  --neon-cyan: #ff8a00; /* bright orange */
-  --neon-blue: #ff5e00; /* deeper orange */
+  --neon-cyan: #ff8a00;
+  --neon-blue: #ff5e00;
   --neon-glow: rgba(255, 138, 0, 0.45);
   --neon-blue-glow: rgba(255, 94, 0, 0.4);
 
@@ -16,6 +16,14 @@
   --text-secondary: #f2d7c2;
   --text-muted: #c9a88a;
 
-  /* Background */
-  --background: #0a0e27;
+  /* Background gradient stops */
+  --bg-1: #1a0a00;
+  --bg-2: #2a1200;
+  --bg-3: #3d1c00;
+  --bg-4: #120600;
+
+  /* Ambient glows */
+  --glow-1: rgba(255, 138, 0, 0.12);
+  --glow-2: rgba(255, 94, 0, 0.14);
+  --glow-3: rgba(255, 60, 0, 0.1);
 }

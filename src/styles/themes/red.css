@@ -1,8 +1,9 @@
 :root {
-  /* Core red palette */
-  --neon-cyan: #ff3b3b; /* bright red accent */
-  --neon-blue: #c21818; /* deeper red for gradients */
+  /* Red palette */
+  --neon-cyan: #ff3b3b;
+  --neon-blue: #c21818;
   --neon-glow: rgba(255, 60, 60, 0.6);
+  --neon-blue-glow: rgba(194, 24, 24, 0.45);
 
   /* Glass + borders */
   --glass-bg: rgba(255, 40, 40, 0.08);
@@ -15,6 +16,14 @@
   --text-secondary: rgba(255, 255, 255, 0.75);
   --text-muted: rgba(255, 255, 255, 0.55);
 
-  /* Background */
-  --background: #0a0e27; /* keep your dark base */
+  /* Background gradient stops */
+  --bg-1: #1a0004;
+  --bg-2: #2a0008;
+  --bg-3: #3d000c;
+  --bg-4: #120002;
+
+  /* Ambient glows */
+  --glow-1: rgba(255, 60, 60, 0.12);
+  --glow-2: rgba(255, 20, 20, 0.14);
+  --glow-3: rgba(180, 0, 0, 0.1);
 }

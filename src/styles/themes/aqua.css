@@ -16,6 +16,14 @@
   --text-secondary: #cbd5e1;
   --text-muted: #94a3b8;
 
-  /* Background */
-  --background: #0a0e27;
+  /* Background gradient stops */
+  --bg-1: #0a0e27;
+  --bg-2: #1a0a2e;
+  --bg-3: #2d1b4e;
+  --bg-4: #0a0014;
+
+  /* Ambient glows */
+  --glow-1: rgba(34, 211, 238, 0.12);
+  --glow-2: rgba(168, 85, 247, 0.14);
+  --glow-3: rgba(59, 130, 246, 0.1);
 }
