@@ -477,18 +477,17 @@ h1, h2, h3, h4 {
   max-width: 720px;
   margin: 0 auto;
 
-  /* FIX: give text enough room so dots NEVER touch it */
-  padding-left: 72px;
+  /* FIX: give the text enough room */
+  padding-left: 80px;
 
   overflow: visible;
 }
 
-/* Vertical line */
 .timeline::before {
   content: "";
   position: absolute;
 
-  /* FIX: place line inside the gutter */
+  /* FIX: place the line inside the gutter */
   left: 28px;
 
   top: 8px;
@@ -497,14 +496,12 @@ h1, h2, h3, h4 {
   background: linear-gradient(to bottom, var(--neon-cyan), transparent);
 }
 
-/* Timeline item */
 .timeline-item {
   position: relative;
   margin-bottom: var(--space-3);
   overflow: visible;
 }
 
-/* Dot */
 .timeline-item::before {
   content: "";
   position: absolute;
