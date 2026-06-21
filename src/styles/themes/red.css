@@ -1,56 +1,56 @@
 :root {
-  /* Accent */
-  --neon-cyan: #ff3b3b;
-  --neon-blue: #c21818;
-  --neon-glow: rgba(255, 60, 60, 0.6);
-  --neon-blue-glow: rgba(194, 24, 24, 0.45);
+  /* Accent — softened, more depth */
+  --neon-cyan: #ff4d4d;          /* softer red */
+  --neon-blue: #b71c1c;          /* deep crimson */
+  --neon-glow: rgba(255, 77, 77, 0.45);
+  --neon-blue-glow: rgba(183, 28, 28, 0.35);
 
-  /* Glass + borders */
-  --glass-bg: rgba(255, 40, 40, 0.08);
-  --glass-bg-strong: rgba(255, 40, 40, 0.14);
-  --glass-border: rgba(255, 60, 60, 0.25);
-  --glass-border-strong: rgba(255, 60, 60, 0.45);
-  --glass-shadow: rgba(0, 0, 0, 0.35) 0 8px 32px;
+  /* Glass — less harsh, more subtle */
+  --glass-bg: rgba(255, 60, 60, 0.06);
+  --glass-bg-strong: rgba(255, 60, 60, 0.10);
+  --glass-border: rgba(255, 90, 90, 0.20);
+  --glass-border-strong: rgba(255, 90, 90, 0.35);
+  --glass-shadow: rgba(0, 0, 0, 0.40) 0 8px 32px;
 
-  /* Text */
-  --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.75);
-  --text-muted: rgba(255, 255, 255, 0.55);
+  /* Text — slightly warmer whites */
+  --text-primary: #fff7f7;
+  --text-secondary: rgba(255, 230, 230, 0.75);
+  --text-muted: rgba(255, 210, 210, 0.55);
 
-  /* Background gradient stops */
-  --bg-1: #1a0004;
-  --bg-2: #2a0008;
-  --bg-3: #3d000c;
-  --bg-4: #120002;
+  /* Background gradient — more hue variation */
+  --bg-1: #140003;   /* deep wine */
+  --bg-2: #1d0006;   /* dark crimson */
+  --bg-3: #2a000a;   /* muted red-violet */
+  --bg-4: #0a0002;   /* near-black with red tint */
 
-  /* Ambient glows */
-  --glow-1: rgba(255, 60, 60, 0.12);
-  --glow-2: rgba(255, 20, 20, 0.14);
-  --glow-3: rgba(180, 0, 0, 0.1);
+  /* Ambient glows — softer, more atmospheric */
+  --glow-1: rgba(255, 80, 80, 0.10);
+  --glow-2: rgba(200, 30, 30, 0.12);
+  --glow-3: rgba(120, 0, 0, 0.08);
 
-  /* Navbar */
-  --navbar-bg: rgba(10, 6, 8, 0.6);
-  --navbar-bg-mobile: rgba(10, 6, 8, 0.9);
-  --footer-bg: rgba(10, 6, 8, 0.45);
+  /* Navbar — blend into background */
+  --navbar-bg: rgba(20, 4, 6, 0.55);
+  --navbar-bg-mobile: rgba(20, 4, 6, 0.85);
+  --footer-bg: rgba(20, 4, 6, 0.40);
 
-  /* Button (custom per-theme) */
-  --btn-primary-start: rgba(255, 60, 60, 0.22);
-  --btn-primary-end: rgba(194, 24, 24, 0.18);
-  --btn-primary-hover-start: rgba(255, 60, 60, 0.38);
-  --btn-primary-hover-end: rgba(194, 24, 24, 0.32);
-  --btn-primary-shadow: rgba(255, 60, 60, 0.5);
-  --btn-border: rgba(255, 60, 60, 0.45);
-  --btn-hover-shadow: rgba(255, 60, 60, 0.28);
+  /* Buttons — premium crimson gradient */
+  --btn-primary-start: rgba(255, 77, 77, 0.22);
+  --btn-primary-end: rgba(183, 28, 28, 0.18);
+  --btn-primary-hover-start: rgba(255, 77, 77, 0.38);
+  --btn-primary-hover-end: rgba(183, 28, 28, 0.30);
+  --btn-primary-shadow: rgba(255, 77, 77, 0.45);
+  --btn-border: rgba(255, 77, 77, 0.40);
+  --btn-hover-shadow: rgba(255, 77, 77, 0.25);
 
-  /* Tag */
-  --tag-bg: rgba(255, 60, 60, 0.08);
-  --tag-border: rgba(255, 60, 60, 0.22);
-  --tag-text: var(--neon-cyan);
+  /* Tags — softer, less aggressive */
+  --tag-bg: rgba(255, 77, 77, 0.08);
+  --tag-border: rgba(255, 77, 77, 0.20);
+  --tag-text: #ff6b6b;
 
   /* Focus / rings */
-  --focus-outline: var(--neon-cyan);
-  --focus-ring: rgba(255, 60, 60, 0.12);
+  --focus-outline: #ff4d4d;
+  --focus-ring: rgba(255, 77, 77, 0.12);
 
-  /* Hover glow fallback */
-  --hover-glow: rgba(255, 60, 60, 0.12);
+  /* Hover glow */
+  --hover-glow: rgba(255, 77, 77, 0.10);
 }
