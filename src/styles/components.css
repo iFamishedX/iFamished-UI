@@ -472,7 +472,6 @@ h1, h2, h3, h4 {
 .profile-bio p { margin-bottom: var(--space-2); text-align: left; }
 
 /* ----- NEW ANIMATED SQUIRCLE TIMELINE ----- */
-
 .timeline {
   position: relative;
   max-width: 720px;
@@ -480,7 +479,7 @@ h1, h2, h3, h4 {
   padding-left: 48px;
 }
 
-/* Vertical line with animated squircle mask */
+/* Always-visible base line */
 .timeline::before {
   content: "";
   position: absolute;
@@ -488,16 +487,41 @@ h1, h2, h3, h4 {
   top: 0;
   bottom: 0;
   width: 3px;
-
-  /* Base line color */
   background: var(--neon-cyan);
+  opacity: 0.35; /* faint base line */
+}
 
-  /* Mask the line with a squircle that moves */
-  -webkit-mask: url("/squircle-mask.svg") repeat-y;
-  mask: url("/squircle-mask.svg") repeat-y;
+/* Animated squircle-like pulse */
+.timeline::after {
+  content: "";
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
 
-  /* Animate the mask movement */
-  animation: squircleFlow 6s linear infinite;
+  /* Rounded glowing pulse */
+  background: radial-gradient(
+    circle at center,
+    var(--neon-cyan) 0%,
+    var(--neon-cyan) 40%,
+    transparent 70%
+  );
+
+  background-size: 100% 120px; /* height of the pulse */
+  background-repeat: no-repeat;
+
+  animation: squirclePulse 4s linear infinite;
+  filter: drop-shadow(0 0 8px var(--neon-glow));
+}
+
+@keyframes squirclePulse {
+  0% {
+    background-position: 0 -120px;
+  }
+  100% {
+    background-position: 0 100%;
+  }
 }
 
 /* Timeline items */
@@ -525,18 +549,6 @@ h1, h2, h3, h4 {
 .timeline-content p {
   color: var(--text-secondary);
   font-size: 0.92rem;
-}
-
-/* Animation */
-@keyframes squircleFlow {
-  0% {
-    mask-position: 0 0;
-    -webkit-mask-position: 0 0;
-  }
-  100% {
-    mask-position: 0 200%;
-    -webkit-mask-position: 0 200%;
-  }
 }
 
 /* ----- Forms ----- */
