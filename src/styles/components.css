@@ -546,7 +546,7 @@ h1, h2, h3, h4 {
 /* Contact page socials row */
 .contact-socials {
   display: flex;
-  gap: 12px; /* perfect middle ground */
+  gap: 6px; /* perfect middle ground */
   flex-wrap: wrap;
   margin-top: var(--space-2);
 }
