@@ -476,7 +476,7 @@ h1, h2, h3, h4 {
   position: relative;
   max-width: 720px;
   margin: 0 auto;
-  padding-left: var(--space-4);
+  padding-left: 32px; /* clean, predictable spacing */
   overflow: visible;
 }
 
@@ -484,7 +484,7 @@ h1, h2, h3, h4 {
 .timeline::before {
   content: "";
   position: absolute;
-  left: 7px; /* aligned to dot center */
+  left: 16px; /* NEW: clean anchor */
   top: 8px;
   bottom: 8px;
   width: 2px;
@@ -503,15 +503,16 @@ h1, h2, h3, h4 {
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: -26px; /* your original dot position */
+  left: 16px; /* SAME anchor as line */
   top: 6px;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: var(--glass-bg-strong);
   backdrop-filter: blur(12px);
   border: 2px solid var(--neon-cyan);
   box-shadow: 0 0 14px var(--neon-glow);
+  transform: translateX(-50%); /* centers dot on the line */
 }
 
 
