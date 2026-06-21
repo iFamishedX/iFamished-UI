@@ -498,19 +498,14 @@ h1, h2, h3, h4 {
 }
 
 /* Dot */
-.timeline-item::before {
+.timeline::before {
   content: "";
   position: absolute;
-  left: 24px; /* SAME anchor as the line */
-  top: 6px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: var(--glass-bg-strong);
-  backdrop-filter: blur(12px);
-  border: 2px solid var(--neon-cyan);
-  box-shadow: 0 0 14px var(--neon-glow);
-  transform: translateX(-50%); /* centers dot on the line */
+  left: 7px; /* perfect alignment with dot center */
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--neon-cyan), transparent);
 }
 
 /* ----- Forms ----- */

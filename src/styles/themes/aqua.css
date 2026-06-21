@@ -1,56 +1,56 @@
 :root {
-  /* Accent — cosmic violet */
-  --neon-cyan: #8b5cf6;              /* electric violet */
-  --neon-blue: #4c1d95;              /* deep indigo */
-  --neon-glow: rgba(139, 92, 246, 0.45);
-  --neon-blue-glow: rgba(76, 29, 149, 0.35);
+  /* Accent — neon aqua */
+  --neon-cyan: #22d3ee;              /* bright aqua */
+  --neon-blue: #3b82f6;              /* soft blue core */
+  --neon-glow: rgba(34, 211, 238, 0.55);
+  --neon-blue-glow: rgba(59, 130, 246, 0.40);
 
-  /* Glass — cool, subtle, spacey */
-  --glass-bg: rgba(139, 92, 246, 0.06);
-  --glass-bg-strong: rgba(139, 92, 246, 0.10);
-  --glass-border: rgba(139, 92, 246, 0.20);
-  --glass-border-strong: rgba(139, 92, 246, 0.35);
-  --glass-shadow: rgba(0, 0, 40, 0.45) 0 8px 32px;
+  /* Glass — aqua glow, soft transparency */
+  --glass-bg: rgba(34, 211, 238, 0.06);
+  --glass-bg-strong: rgba(34, 211, 238, 0.10);
+  --glass-border: rgba(34, 211, 238, 0.22);
+  --glass-border-strong: rgba(34, 211, 238, 0.38);
+  --glass-shadow: rgba(0, 0, 0, 0.50) 0 8px 32px;
 
-  /* Text — cool white */
-  --text-primary: #f5f3ff;
-  --text-secondary: rgba(229, 223, 255, 0.75);
-  --text-muted: rgba(209, 200, 255, 0.55);
+  /* Text — cool aqua white */
+  --text-primary: #e8faff;
+  --text-secondary: rgba(200, 240, 255, 0.75);
+  --text-muted: rgba(170, 220, 240, 0.55);
 
-  /* Background — cosmic gradient */
-  --bg-1: #0a0018;   /* deep space */
-  --bg-2: #12002a;   /* indigo */
-  --bg-3: #1d003d;   /* violet */
-  --bg-4: #060012;   /* near-black */
+  /* Background — deep ocean gradient */
+  --bg-1: #03141c;   /* deep blue-black */
+  --bg-2: #05202c;   /* cold teal-black */
+  --bg-3: #083044;   /* aqua shadow */
+  --bg-4: #010a0f;   /* near-black */
 
-  /* Ambient glows — nebula-like */
-  --glow-1: rgba(139, 92, 246, 0.12);
-  --glow-2: rgba(236, 72, 153, 0.14);   /* magenta nebula */
-  --glow-3: rgba(59, 130, 246, 0.10);   /* blue star glow */
+  /* Ambient glows — aqua cyberpunk */
+  --glow-1: rgba(34, 211, 238, 0.12);
+  --glow-2: rgba(59, 130, 246, 0.14);
+  --glow-3: rgba(125, 211, 252, 0.10);
 
   /* Navbar */
-  --navbar-bg: rgba(10, 0, 30, 0.55);
-  --navbar-bg-mobile: rgba(10, 0, 30, 0.85);
-  --footer-bg: rgba(10, 0, 30, 0.40);
+  --navbar-bg: rgba(3, 20, 28, 0.55);
+  --navbar-bg-mobile: rgba(3, 20, 28, 0.85);
+  --footer-bg: rgba(3, 20, 28, 0.40);
 
-  /* Buttons — cosmic gradient */
-  --btn-primary-start: rgba(139, 92, 246, 0.22);
-  --btn-primary-end: rgba(76, 29, 149, 0.18);
-  --btn-primary-hover-start: rgba(139, 92, 246, 0.38);
-  --btn-primary-hover-end: rgba(76, 29, 149, 0.30);
-  --btn-primary-shadow: rgba(139, 92, 246, 0.45);
-  --btn-border: rgba(139, 92, 246, 0.40);
-  --btn-hover-shadow: rgba(139, 92, 246, 0.25);
+  /* Buttons — aqua gradient */
+  --btn-primary-start: rgba(34, 211, 238, 0.22);
+  --btn-primary-end: rgba(59, 130, 246, 0.18);
+  --btn-primary-hover-start: rgba(34, 211, 238, 0.38);
+  --btn-primary-hover-end: rgba(59, 130, 246, 0.30);
+  --btn-primary-shadow: rgba(34, 211, 238, 0.50);
+  --btn-border: rgba(34, 211, 238, 0.40);
+  --btn-hover-shadow: rgba(34, 211, 238, 0.25);
 
   /* Tags */
-  --tag-bg: rgba(139, 92, 246, 0.08);
-  --tag-border: rgba(139, 92, 246, 0.20);
-  --tag-text: #a78bfa;
+  --tag-bg: rgba(34, 211, 238, 0.08);
+  --tag-border: rgba(34, 211, 238, 0.20);
+  --tag-text: #22d3ee;
 
   /* Focus */
-  --focus-outline: #8b5cf6;
-  --focus-ring: rgba(139, 92, 246, 0.12);
+  --focus-outline: #22d3ee;
+  --focus-ring: rgba(34, 211, 238, 0.12);
 
   /* Hover glow */
-  --hover-glow: rgba(139, 92, 246, 0.10);
+  --hover-glow: rgba(34, 211, 238, 0.10);
 }
