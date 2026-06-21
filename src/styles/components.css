@@ -476,14 +476,15 @@ h1, h2, h3, h4 {
   position: relative;
   max-width: 720px;
   margin: 0 auto;
-  padding-left: var(--space-4); /* space for line + dot */
+  padding-left: var(--space-4);
+  overflow: visible;
 }
 
 /* Vertical line */
 .timeline::before {
   content: "";
   position: absolute;
-  left: 24px; /* anchor point for both line and dot */
+  left: 7px; /* aligned to dot center */
   top: 8px;
   bottom: 8px;
   width: 2px;
@@ -494,19 +495,25 @@ h1, h2, h3, h4 {
 .timeline-item {
   position: relative;
   margin-bottom: var(--space-3);
-  padding-left: var(--space-3); /* space between dot and text */
+  padding-left: var(--space-3);
+  overflow: visible;
 }
 
 /* Dot */
-.timeline::before {
+.timeline-item::before {
   content: "";
   position: absolute;
-  left: 7px; /* perfect alignment with dot center */
-  top: 8px;
-  bottom: 8px;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--neon-cyan), transparent);
+  left: -26px; /* your original dot position */
+  top: 6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(12px);
+  border: 2px solid var(--neon-cyan);
+  box-shadow: 0 0 14px var(--neon-glow);
 }
+
 
 /* ----- Forms ----- */
 .contact-form { display: flex; flex-direction: column; gap: var(--space-2); }
