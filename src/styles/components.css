@@ -476,40 +476,28 @@ h1, h2, h3, h4 {
   position: relative;
   max-width: 720px;
   margin: 0 auto;
-  padding-left: var(--space-4); /* space for line + dot */
-}
-.timeline,
-.timeline-item {
+  padding-left: 40px;
   overflow: visible;
 }
 
-/* Vertical line */
 .timeline::before {
   content: "";
   position: absolute;
-  left: 24px; /* anchor point for both line and dot */
+  left: 12px;
   top: 8px;
   bottom: 8px;
   width: 2px;
   background: linear-gradient(to bottom, var(--neon-cyan), transparent);
 }
 
-/* Timeline item */
 .timeline-item {
   position: relative;
   margin-bottom: var(--space-3);
-  padding-left: var(--space-3); /* space between dot and text */
+  overflow: visible;
 }
 
-/* Dot */
-.timeline::before {
-  content: "";
-  position: absolute;
-  left: 7px; /* perfect alignment with dot center */
-  top: 8px;
-  bottom: 8px;
-  width: 2px;
-  background: linear-gradient(to bottom, var(--neon-cyan), transparent);
+.timeline-item::before {
+  content: none; /* dots removed */
 }
 
 /* ----- Forms ----- */
