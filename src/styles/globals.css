@@ -51,6 +51,9 @@ body {
   text-rendering: optimizeLegibility;
   overscroll-behavior: none;
   background: transparent;
+
+  /* restore inherited text color */
+  color: var(--text-primary);
 }
 
 /* ===== Typography ===== */
