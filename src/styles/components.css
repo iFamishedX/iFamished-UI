@@ -476,28 +476,53 @@ h1, h2, h3, h4 {
   position: relative;
   max-width: 720px;
   margin: 0 auto;
-  padding-left: 40px;
+
+  /* This is the key: lock the text gutter */
+  padding-left: 56px;
+
   overflow: visible;
 }
 
+/* Vertical line */
 .timeline::before {
   content: "";
   position: absolute;
-  left: 12px;
+
+  /* Lock the line to the gutter */
+  left: 20px;
+
   top: 8px;
   bottom: 8px;
   width: 2px;
   background: linear-gradient(to bottom, var(--neon-cyan), transparent);
 }
 
+/* Timeline item */
 .timeline-item {
   position: relative;
   margin-bottom: var(--space-3);
   overflow: visible;
 }
 
+/* Dot */
 .timeline-item::before {
-  content: none; /* dots removed */
+  content: "";
+  position: absolute;
+
+  /* EXACT same anchor as the line */
+  left: 20px;
+
+  top: 6px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--glass-bg-strong);
+  backdrop-filter: blur(12px);
+  border: 2px solid var(--neon-cyan);
+  box-shadow: 0 0 14px var(--neon-glow);
+
+  /* Center dot on the line */
+  transform: translateX(-50%);
 }
 
 /* ----- Forms ----- */
