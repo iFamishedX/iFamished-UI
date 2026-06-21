@@ -3,6 +3,30 @@
    ============================================================ */
 
 /* ----- GlassCard ----- */
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Default heading colors */
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text-primary);
+}
+
+/* Page + section titles */
+.page-header h1,
+.section-header h2,
+.project-card .project-title {
+  color: var(--text-primary);
+}
+
+
 .glass-card {
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
