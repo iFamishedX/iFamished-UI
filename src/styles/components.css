@@ -22,17 +22,6 @@ h1, h2, h3, h4 {
   color: var(--text-primary);
 }
 
-/* -------------------------
-   Glass system (use theme vars; fallbacks preserve current aqua)
-   ------------------------- */
-:root {
-  --glass-bg: var(--glass-bg, rgba(34, 211, 238, 0.08));
-  --glass-bg-strong: var(--glass-bg-strong, rgba(34, 211, 238, 0.14));
-  --glass-border: var(--glass-border, rgba(34, 211, 238, 0.25));
-  --glass-border-strong: var(--glass-border-strong, rgba(34, 211, 238, 0.45));
-  --glass-shadow: var(--glass-shadow, rgba(0, 0, 0, 0.35) 0 8px 32px);
-}
-
 /* Glass card */
 .glass-card {
   background: var(--glass-bg);
