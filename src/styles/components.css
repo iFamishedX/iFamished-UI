@@ -476,42 +476,42 @@ h1, h2, h3, h4 {
   position: relative;
   max-width: 720px;
   margin: 0 auto;
-  padding-left: var(--space-4);
+  padding-left: var(--space-4); /* space for line + dot */
 }
 
+/* Vertical line */
 .timeline::before {
   content: "";
   position: absolute;
-  left: 8px;
+  left: 24px; /* anchor point for both line and dot */
   top: 8px;
   bottom: 8px;
   width: 2px;
   background: linear-gradient(to bottom, var(--neon-cyan), transparent);
 }
 
+/* Timeline item */
 .timeline-item {
   position: relative;
   margin-bottom: var(--space-3);
-  padding-left: var(--space-3);
+  padding-left: var(--space-3); /* space between dot and text */
 }
 
+/* Dot */
 .timeline-item::before {
   content: "";
   position: absolute;
-  left: -26px;
+  left: 24px; /* SAME anchor as the line */
   top: 6px;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: var(--glass-bg-strong);
   backdrop-filter: blur(12px);
   border: 2px solid var(--neon-cyan);
   box-shadow: 0 0 14px var(--neon-glow);
+  transform: translateX(-50%); /* centers dot on the line */
 }
-
-.timeline-item h3 { color: var(--text-primary); margin-bottom: 4px; }
-.timeline-item .timeline-meta { color: var(--text-muted); font-size: 0.8rem; font-family: var(--mono); margin-bottom: var(--space-1); display: block; }
-.timeline-item p { color: var(--text-secondary); font-size: 0.92rem; }
 
 /* ----- Forms ----- */
 .contact-form { display: flex; flex-direction: column; gap: var(--space-2); }
