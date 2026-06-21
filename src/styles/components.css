@@ -121,7 +121,7 @@ h4 {
   color: var(--text-primary);
   transition:
     transform 0.25s var(--ease),
-    background-color 0.35s var(--ease)
+    background-color 0.35s var(--ease),
     border-color 0.25s var(--ease),
     box-shadow 0.25s var(--ease);
   position: relative;
