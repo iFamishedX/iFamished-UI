@@ -479,7 +479,7 @@ h1, h2, h3, h4 {
   padding-left: 48px;
 }
 
-/* Always-visible base line */
+/* Base line */
 .timeline::before {
   content: "";
   position: absolute;
@@ -488,10 +488,10 @@ h1, h2, h3, h4 {
   bottom: 0;
   width: 3px;
   background: var(--neon-cyan);
-  opacity: 0.35; /* faint base line */
+  opacity: 0.35;
 }
 
-/* Animated squircle-like pulse */
+/* Animated pulse */
 .timeline::after {
   content: "";
   position: absolute;
@@ -500,7 +500,6 @@ h1, h2, h3, h4 {
   bottom: 0;
   width: 3px;
 
-  /* Rounded glowing pulse */
   background: radial-gradient(
     circle at center,
     var(--neon-cyan) 0%,
@@ -508,10 +507,10 @@ h1, h2, h3, h4 {
     transparent 70%
   );
 
-  background-size: 100% 120px; /* height of the pulse */
+  background-size: 100% 120px;
   background-repeat: no-repeat;
 
-  animation: squirclePulse 4s linear infinite;
+  animation: squirclePulse 4s ease-in-out infinite;
   filter: drop-shadow(0 0 8px var(--neon-glow));
 }
 
@@ -519,8 +518,11 @@ h1, h2, h3, h4 {
   0% {
     background-position: 0 -120px;
   }
-  100% {
+  50% {
     background-position: 0 100%;
+  }
+  100% {
+    background-position: 0 -120px;
   }
 }
 
