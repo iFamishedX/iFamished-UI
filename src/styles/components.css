@@ -236,6 +236,21 @@ h4 {
   gap: var(--space-1);
 }
 
+.navbar-underline {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  background: var(--neon-cyan);
+  box-shadow: 0 0 10px var(--neon-glow);
+  border-radius: 2px;
+  transition:
+    width 0.25s var(--ease),
+    transform 0.25s var(--ease),
+    opacity 0.25s var(--ease);
+  opacity: 0;
+  pointer-events: none;
+}
+
 .navbar-link {
   position: relative;
   color: var(--text-secondary);
@@ -251,39 +266,8 @@ h4 {
   background: var(--glass-bg);
 }
 
-.navbar-link::after {
-  content: "";
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--neon-cyan);
-  box-shadow: 0 0 10px var(--neon-glow);
-  opacity: 0;
-  transition:
-    width 0.25s var(--ease),
-    opacity 0.25s var(--ease);
-}
-
-
 .navbar-link.active {
   color: var(--neon-cyan);
-}
-
-.navbar-link.active::after {
-  content: "";
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 24px;
-  height: 2px;
-  border-radius: 2px;
-  background: var(--neon-cyan);
-  box-shadow: 0 0 10px var(--neon-glow);
 }
 
 .navbar-toggle {
