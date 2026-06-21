@@ -477,8 +477,8 @@ h1, h2, h3, h4 {
   max-width: 720px;
   margin: 0 auto;
 
-  /* This is the key: lock the text gutter */
-  padding-left: 56px;
+  /* FIX: give text enough room so dots NEVER touch it */
+  padding-left: 72px;
 
   overflow: visible;
 }
@@ -488,8 +488,8 @@ h1, h2, h3, h4 {
   content: "";
   position: absolute;
 
-  /* Lock the line to the gutter */
-  left: 20px;
+  /* FIX: place line inside the gutter */
+  left: 28px;
 
   top: 8px;
   bottom: 8px;
@@ -509,8 +509,8 @@ h1, h2, h3, h4 {
   content: "";
   position: absolute;
 
-  /* EXACT same anchor as the line */
-  left: 20px;
+  /* FIX: dot shares EXACT anchor with line */
+  left: 28px;
 
   top: 6px;
   width: 16px;
@@ -521,7 +521,7 @@ h1, h2, h3, h4 {
   border: 2px solid var(--neon-cyan);
   box-shadow: 0 0 14px var(--neon-glow);
 
-  /* Center dot on the line */
+  /* FIX: center dot on the line */
   transform: translateX(-50%);
 }
 
