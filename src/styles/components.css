@@ -546,9 +546,9 @@ h1, h2, h3, h4 {
 /* Contact page socials row */
 .contact-socials {
   display: flex;
-  gap: var(--space-2); /* 16px spacing */
-  flex-wrap: wrap;     /* allows clean wrapping on mobile */
-  margin-top: var(--space-3);
+  gap: 12px; /* perfect middle ground */
+  flex-wrap: wrap;
+  margin-top: var(--space-2);
 }
 
 /* ----- Page title ----- */
