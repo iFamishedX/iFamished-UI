@@ -184,6 +184,8 @@ h1, h2, h3, h4 {
   box-shadow: var(--glass-shadow);
   margin: var(--space-2) var(--space-2) 0;
   transition: background-color 0.3s var(--ease);
+  isolation: isolate; /* forces Chrome to render backdrop-filter */
+  background-color: rgba(10,14,39,0.55); /* explicit fallback, same look */
 }
 
 .navbar-brand {
@@ -210,7 +212,7 @@ h1, h2, h3, h4 {
 
 .navbar-underline {
   position: absolute;
-  bottom: 0;
+  bottom: 0.25em;
   height: 2px;
   background: var(--neon-cyan);
   box-shadow: 0 0 10px var(--neon-glow);
@@ -231,6 +233,8 @@ h1, h2, h3, h4 {
   padding: 8px 16px;
   border-radius: var(--radius-sm);
   transition: color 0.25s var(--ease), background-color 0.25s var(--ease);
+  display: inline-flex;
+  align-items: center;
 }
 
 .navbar-link:hover {
