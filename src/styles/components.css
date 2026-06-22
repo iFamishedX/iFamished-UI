@@ -170,6 +170,7 @@ h1, h2, h3, h4 {
   padding: var(--space-2) 0;
   backdrop-filter: blur(22px) saturate(160%);
   -webkit-backdrop-filter: blur(22px) saturate(160%);
+  transform: translateZ(0);
 }
 
 .navbar-inner {
@@ -190,7 +191,7 @@ h1, h2, h3, h4 {
   box-shadow: var(--glass-shadow);
   margin: var(--space-2) var(--space-2) 0;
   transition: background-color 0.3s var(--ease);
-  isolation: isolate; /* forces Chrome to render backdrop-filter */
+  will-change: backdrop-filter;
 }
 
 .navbar-brand {
