@@ -1,14 +1,11 @@
 import { useState, useRef, useEffect } from "react"
 import { NavLink, Link, useLocation } from "react-router-dom"
 
-const navItems = [
-  { to: "/", label: "Home", end: true },
-  { to: "/about", label: "About" },
-  { to: "/projects", label: "Projects" },
-  { to: "/contact", label: "Contact" },
-]
-
-export default function Navbar() {
+export default function Navbar({
+  brand = "Site",
+  brandDotColor = "#22d3ee",
+  navItems = [],
+}) {
   const [open, setOpen] = useState(false)
   const underlineRef = useRef(null)
   const location = useLocation()
@@ -16,7 +13,6 @@ export default function Navbar() {
   const toggleMenu = () => setOpen((v) => !v)
   const closeMenu = () => setOpen(false)
 
-  // Move underline on route change
   useEffect(() => {
     const active = document.querySelector(".navbar-link.active")
     const underline = underlineRef.current
@@ -35,8 +31,12 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="navbar-inner">
         <Link to="/" className="navbar-brand" onClick={closeMenu}>
-          <span className="brand-dot" aria-hidden="true" />
-          iFamished
+          <span
+            className="brand-dot"
+            aria-hidden="true"
+            style={{ backgroundColor: brandDotColor }}
+          />
+          {brand}
         </Link>
 
         <button
@@ -52,7 +52,6 @@ export default function Navbar() {
         </button>
 
         <ul className={`navbar-links ${open ? "open" : ""}`}>
-          {/* Sliding underline */}
           <span className="navbar-underline" ref={underlineRef} />
 
           {navItems.map((item) => (
