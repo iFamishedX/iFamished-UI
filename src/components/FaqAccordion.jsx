@@ -1,6 +1,6 @@
 import { useState, useRef, useId } from "react"
 import { GlassCard } from "ifamished-ui"
-import Icon from "./Icon"
+import { Icon } from "ifamished-ui"
 
 /**
  * FaqAccordion — animated accordion item.
