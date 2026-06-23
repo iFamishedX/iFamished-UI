@@ -1,0 +1,32 @@
+/* icon-badge.css */
+/* A small circular badge behind icons used in cards and headers */
+
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 50%;
+  background: var(--glass-bg-2);
+  backdrop-filter: blur(8px);
+
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-sm);
+
+  color: var(--text-1);
+}
+
+/* Smaller variant (used in comparison cards) */
+.icon-badge--sm {
+  width: 32px;
+  height: 32px;
+}
+
+/* Larger variant (hero / special sections) */
+.icon-badge--lg {
+  width: 48px;
+  height: 48px;
+}
