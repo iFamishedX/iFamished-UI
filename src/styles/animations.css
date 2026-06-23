@@ -1,0 +1,26 @@
+/* animations.css — keyframes and small animation utilities */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes glowPulse {
+  0%,100% { box-shadow: 0 0 20px var(--neon-glow), 0 0 40px transparent; }
+  50% { box-shadow: 0 0 30px var(--neon-glow), 0 0 60px rgba(34,211,238,0.15); }
+}
+
+@keyframes squirclePulse {
+  0% { background-position: 0 -120px; }
+  50% { background-position: 0 calc(100% + 120px); }
+  100% { background-position: 0 -120px; }
+}
+
+/* utilities */
+.fade-in-up { animation: fadeInUp 0.7s var(--ease) both; }
+.fade-in { animation: fadeIn 0.8s var(--ease) both; }

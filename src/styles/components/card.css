@@ -1,0 +1,39 @@
+/* components/card.css — glass card base and hero variant */
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  padding: var(--space-4);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s var(--ease),
+              border-color 0.35s var(--ease),
+              box-shadow 0.35s var(--ease),
+              background-color 0.35s var(--ease);
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  pointer-events: none;
+}
+
+.glass-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--glass-border-strong);
+  background: var(--glass-bg-strong);
+  box-shadow: var(--glass-shadow), 0 0 24px var(--hover-glow);
+}
+
+.glass-card--hero {
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  text-align: center;
+}

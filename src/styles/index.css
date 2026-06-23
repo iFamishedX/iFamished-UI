@@ -1,0 +1,21 @@
+/* index.css — import order */
+@import "./reset.css";
+@import "./tokens.css";
+@import "./globals.css";
+@import "./animations.css";
+
+/* components */
+@import "./components/button.css";
+@import "./components/card.css";
+@import "./components/navbar.css";
+@import "./components/footer.css";
+@import "./components/forms.css";
+
+/* patterns */
+@import "./patterns/grids.css";
+@import "./patterns/icon-badge.css";
+@import "./patterns/stat-pill.css";
+@import "./patterns/timeline.css";
+@import "./patterns/faq.css";
+@import "./patterns/cta.css";
+@import "./patterns/utilities.css";
