@@ -4,8 +4,8 @@ import { createPortal } from "react-dom"
 const ANIMATION_DURATION = 150 // ms
 
 export default function Dropdown({ label, value, options, onChange }) {
-  const [isOpen, setIsOpen] = useState(false)      // controls animation state
-  const [isMounted, setIsMounted] = useState(false) // controls portal mount
+  const [open, setOpen] = useState(false)        // visual state (for CSS)
+  const [mounted, setMounted] = useState(false)  // portal mount
   const triggerRef = useRef(null)
   const menuRef = useRef(null)
 
@@ -14,24 +14,16 @@ export default function Dropdown({ label, value, options, onChange }) {
   const [highlightedIndex, setHighlightedIndex] = useState(0)
   const [menuStyle, setMenuStyle] = useState({})
 
-  // --- OPEN / CLOSE HELPERS ---
-  function openDropdown() {
-    if (isMounted) {
-      setIsOpen(true)
-      return
-    }
-    setIsMounted(true)
-    setIsOpen(true)
+  function showMenu() {
+    if (!mounted) setMounted(true)
+    requestAnimationFrame(() => setOpen(true))
   }
 
-  function closeDropdown() {
-    setIsOpen(false)
-    setTimeout(() => {
-      setIsMounted(false)
-    }, ANIMATION_DURATION)
+  function hideMenu() {
+    setOpen(false)
+    setTimeout(() => setMounted(false), ANIMATION_DURATION)
   }
 
-  // --- CLOSE ON OUTSIDE CLICK ---
   useEffect(() => {
     function handleClick(e) {
       if (
@@ -40,16 +32,15 @@ export default function Dropdown({ label, value, options, onChange }) {
         menuRef.current &&
         !menuRef.current.contains(e.target)
       ) {
-        closeDropdown()
+        hideMenu()
       }
     }
     document.addEventListener("mousedown", handleClick)
     return () => document.removeEventListener("mousedown", handleClick)
   }, [])
 
-  // --- POSITION + AUTO-FLIP ---
   useEffect(() => {
-    if (!isMounted || !triggerRef.current) return
+    if (!mounted || !triggerRef.current) return
 
     const rect = triggerRef.current.getBoundingClientRect()
     const base = {
@@ -59,14 +50,12 @@ export default function Dropdown({ label, value, options, onChange }) {
       zIndex: 999999999,
     }
 
-    // initial bottom placement
     let style = {
       ...base,
       top: rect.bottom + 6 + "px",
     }
     setMenuStyle(style)
 
-    // after first paint, check if we need to flip
     requestAnimationFrame(() => {
       if (!menuRef.current) return
       const menuRect = menuRef.current.getBoundingClientRect()
@@ -79,15 +68,13 @@ export default function Dropdown({ label, value, options, onChange }) {
         setMenuStyle(style)
       }
     })
-  }, [isMounted])
+  }, [mounted])
 
-  // --- FORMAT LABEL ---
   function formatLabel(opt) {
     if (!opt) return "All"
     return opt.charAt(0).toUpperCase() + opt.slice(1)
   }
 
-  // --- TYPEAHEAD (EXACT MATCH PRIORITY) ---
   function handleType(e) {
     const char = e.key.length === 1 ? e.key : null
     if (!char) return
@@ -100,10 +87,8 @@ export default function Dropdown({ label, value, options, onChange }) {
 
     const lower = options.map(o => o.toLowerCase())
 
-    // exact match first
     let idx = lower.findIndex(o => o === next)
     if (idx === -1) {
-      // then prefix match
       idx = lower.findIndex(o => o.startsWith(next))
     }
     if (idx !== -1) {
@@ -112,10 +97,9 @@ export default function Dropdown({ label, value, options, onChange }) {
     }
   }
 
-  // --- ARROW KEY NAVIGATION ---
   function handleKeyDown(e) {
-    if (!isMounted && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
-      openDropdown()
+    if (!mounted && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
+      showMenu()
       return
     }
 
@@ -130,16 +114,15 @@ export default function Dropdown({ label, value, options, onChange }) {
       const opt = options[highlightedIndex]
       if (!opt) return
       onChange(opt)
-      closeDropdown()
+      hideMenu()
     } else if (e.key === "Escape") {
       e.preventDefault()
-      closeDropdown()
+      hideMenu()
     } else {
       handleType(e)
     }
   }
 
-  // --- HIGHLIGHT TYPED PREFIX ---
   function highlight(opt) {
     const label = formatLabel(opt)
     if (!typed) return label
@@ -155,28 +138,30 @@ export default function Dropdown({ label, value, options, onChange }) {
         className="dropdown-trigger"
         ref={triggerRef}
         onClick={() => {
-          if (isMounted && isOpen) {
-            closeDropdown()
+          if (mounted && open) {
+            hideMenu()
           } else {
-            openDropdown()
+            showMenu()
           }
           triggerRef.current?.focus()
         }}
         onKeyDown={handleKeyDown}
         type="button"
       >
-        <span>{label}: </span>
-        <strong>{formatLabel(value)}</strong>
+        <span>{label}:</span>
+        <span className="dropdown-trigger-value">
+          {formatLabel(value)}
+        </span>
         <svg width="16" height="16" viewBox="0 0 24 24">
           <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" fill="none" />
         </svg>
       </button>
 
-      {isMounted &&
+      {mounted &&
         createPortal(
           <div
             className={
-              "dropdown-menu" + (isOpen ? " dropdown-menu--open" : "")
+              "dropdown-menu" + (open ? " dropdown-menu--open" : "")
             }
             ref={menuRef}
             style={menuStyle}
@@ -192,7 +177,7 @@ export default function Dropdown({ label, value, options, onChange }) {
                 onMouseEnter={() => setHighlightedIndex(idx)}
                 onClick={() => {
                   onChange(opt)
-                  closeDropdown()
+                  hideMenu()
                 }}
                 dangerouslySetInnerHTML={{ __html: highlight(opt) }}
               />
