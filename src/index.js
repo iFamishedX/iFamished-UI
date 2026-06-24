@@ -1,4 +1,5 @@
 // Export components
+export { default as Dropdown } from "./components/Dropdown"
 export { default as FaqAccordion } from "./components/FaqAccordion"
 export { default as Footer } from "./components/Footer"
 export { default as GlassButton } from "./components/GlassButton"
