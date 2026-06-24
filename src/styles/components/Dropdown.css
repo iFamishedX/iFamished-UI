@@ -11,13 +11,14 @@
   min-width: 180px;
   max-height: 260px;          /* scrollable */
   overflow-y: auto;           /* scroll */
+  overflow-x: hidden;
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-sm);
   backdrop-filter: blur(12px);
   box-shadow: var(--glass-shadow);
   padding: 6px 0;
-  z-index: 999;                /* above everything else */
+  z-index: 999999;                /* above everything else */
 }
 
 
