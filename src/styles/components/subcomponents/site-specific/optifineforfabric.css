@@ -337,3 +337,15 @@
   background: currentColor;
   flex-shrink: 0;
 }
+
+.version-badge--release .version-badge-dot {
+  background: #4ade80 !important; /* green */
+}
+
+.version-badge--beta .version-badge-dot {
+  background: #f59e0b !important; /* orange */
+}
+
+.version-badge--alpha .version-badge-dot {
+  background: #ef4444 !important; /* red */
+}

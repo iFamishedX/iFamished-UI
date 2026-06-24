@@ -3,6 +3,7 @@
 @import "./utils.css";
 
 /* Components */
+@import "./components/Dropdown.css";
 @import "./components/FaqAccordion.css";
 @import "./components/Footer.css";
 @import "./components/GlassButton.css";
@@ -17,6 +18,3 @@
 @import "./components/subcomponents/Profile.css";
 @import "./components/subcomponents/Projects.css";
 @import "./components/subcomponents/Timeline.css";
-
-/* Site-specific */
-@import "./components/subcomponents/site-specific/optifineforfabric.css";
