@@ -1,32 +1,18 @@
+/* Root wrapper */
 .dropdown {
   position: relative;
   display: inline-block;
-  z-index: 20; /* make the whole control sit above cards */
+  z-index: 20;
 }
 
-.dropdown-menu {
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 0;
-  min-width: 180px;
-  max-height: 260px;          /* scrollable */
-  overflow-y: auto;           /* scroll */
-  overflow-x: hidden;
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-sm);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--glass-shadow);
-  padding: 6px 0;
-  z-index: 999999;                /* above everything else */
-}
-
-
+/* Trigger */
 .dropdown-trigger {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 8px;
   padding: 10px 16px;
+  min-width: 220px; /* STATIC WIDTH */
   border-radius: var(--radius-sm);
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -41,6 +27,35 @@
   border-color: var(--glass-border-strong);
 }
 
+/* Menu container */
+.dropdown-menu {
+  position: absolute;
+  left: 0;
+  width: 220px; /* STATIC WIDTH */
+  max-height: 260px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--glass-shadow);
+  padding: 6px 0;
+  z-index: 999999;
+
+  /* Animation */
+  opacity: 0;
+  transform: scale(0.97);
+  transform-origin: top;
+  transition: opacity 0.14s var(--ease), transform 0.14s var(--ease);
+}
+
+.dropdown-menu--open {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Items */
 .dropdown-item {
   padding: 10px 14px;
   cursor: pointer;
@@ -56,4 +71,9 @@
 .dropdown-item.active {
   color: var(--neon-cyan);
   font-weight: 600;
+}
+
+.dropdown-item.highlighted {
+  background: var(--glass-bg-strong);
+  color: var(--text-primary);
 }

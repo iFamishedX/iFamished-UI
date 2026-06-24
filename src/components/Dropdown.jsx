@@ -6,9 +6,13 @@ export default function Dropdown({ label, value, options, onChange }) {
   const triggerRef = useRef(null)
   const menuRef = useRef(null)
 
-  // --- TYPEAHEAD STATE ---
+  const isMulti = Array.isArray(value)
+
+  // --- STATE ---
   const [typed, setTyped] = useState("")
   const typedTimeout = useRef(null)
+  const [highlightedIndex, setHighlightedIndex] = useState(0)
+  const [menuStyle, setMenuStyle] = useState({})
 
   // --- CLOSE ON OUTSIDE CLICK ---
   useEffect(() => {
@@ -26,52 +30,136 @@ export default function Dropdown({ label, value, options, onChange }) {
     return () => document.removeEventListener("mousedown", handleClick)
   }, [])
 
-  // --- POSITION MENU UNDER TRIGGER ---
-  const [menuStyle, setMenuStyle] = useState({})
+  // --- POSITION + AUTO-FLIP ---
   useEffect(() => {
     if (open && triggerRef.current) {
       const rect = triggerRef.current.getBoundingClientRect()
-      setMenuStyle({
+      const base = {
         position: "absolute",
-        top: rect.bottom + 6 + "px",
         left: rect.left + "px",
-        width: "220px", // fixed width
+        width: "220px", // static width
         zIndex: 999999999,
+      }
+
+      // initial bottom placement
+      let style = {
+        ...base,
+        top: rect.bottom + 6 + "px",
+      }
+
+      // after first paint, check if we need to flip
+      requestAnimationFrame(() => {
+        if (!menuRef.current) return
+        const menuRect = menuRef.current.getBoundingClientRect()
+        const overflowBottom = menuRect.bottom > window.innerHeight
+        if (overflowBottom) {
+          style = {
+            ...base,
+            top: rect.top - menuRect.height - 6 + "px",
+          }
+          setMenuStyle(style)
+        } else {
+          setMenuStyle(style)
+        }
       })
+
+      setMenuStyle(style)
     }
   }, [open])
 
-  // --- TYPEAHEAD HANDLER ---
+  // --- FORMAT LABEL ---
+  function formatLabel(opt) {
+    if (opt == null) return ""
+    return opt.charAt(0).toUpperCase() + opt.slice(1)
+  }
+
+  // --- TYPEAHEAD (EXACT MATCH PRIORITY) ---
   function handleType(e) {
     const char = e.key.length === 1 ? e.key : null
     if (!char) return
 
-    const next = typed + char.toLowerCase()
+    const next = (typed + char).toLowerCase()
     setTyped(next)
 
     clearTimeout(typedTimeout.current)
     typedTimeout.current = setTimeout(() => setTyped(""), 1500)
 
-    const match = options.find(opt =>
-      opt.toLowerCase().startsWith(next)
-    )
-    if (match) onChange(match)
+    const lower = options.map(o => o.toLowerCase())
+
+    // exact match first
+    let idx = lower.findIndex(o => o === next)
+    if (idx === -1) {
+      // then prefix match
+      idx = lower.findIndex(o => o.startsWith(next))
+    }
+    if (idx !== -1) {
+      setHighlightedIndex(idx)
+      if (!isMulti) {
+        onChange(options[idx])
+      }
+    }
   }
 
-  // --- CAPITALIZE LABELS ---
-  function formatLabel(opt) {
-    return opt.charAt(0).toUpperCase() + opt.slice(1)
+  // --- ARROW KEY NAVIGATION ---
+  function handleKeyDown(e) {
+    if (!open && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
+      setOpen(true)
+      return
+    }
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault()
+      setHighlightedIndex(i => (i + 1) % options.length)
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault()
+      setHighlightedIndex(i => (i - 1 + options.length) % options.length)
+    } else if (e.key === "Enter") {
+      e.preventDefault()
+      const opt = options[highlightedIndex]
+      if (!opt) return
+      if (isMulti) {
+        toggleMulti(opt)
+      } else {
+        onChange(opt)
+        setOpen(false)
+      }
+    } else if (e.key === "Escape") {
+      e.preventDefault()
+      setOpen(false)
+    } else {
+      handleType(e)
+    }
   }
 
-  // --- HIGHLIGHT MATCH ---
+  // --- MULTI-SELECT TOGGLE ---
+  function toggleMulti(opt) {
+    const current = Array.isArray(value) ? value : []
+    const exists = current.includes(opt)
+    const next = exists
+      ? current.filter(v => v !== opt)
+      : [...current, opt]
+    onChange(next)
+  }
+
+  // --- HIGHLIGHT TYPED PREFIX ---
   function highlight(opt) {
     const label = formatLabel(opt)
     if (!typed) return label
-
     return label.replace(
       new RegExp(`^(${typed})`, "i"),
       `<strong style="color: var(--neon-cyan)">$1</strong>`
     )
+  }
+
+  // --- TRIGGER LABEL (SINGLE VS MULTI) ---
+  function renderTriggerValue() {
+    if (isMulti) {
+      const arr = value || []
+      if (!arr.length) return "All"
+      if (arr.length === 1) return formatLabel(arr[0])
+      return `${arr.length} selected`
+    }
+    return formatLabel(value)
   }
 
   return (
@@ -80,13 +168,14 @@ export default function Dropdown({ label, value, options, onChange }) {
         className="dropdown-trigger"
         ref={triggerRef}
         onClick={() => {
-          setOpen(!open)
-          triggerRef.current?.focus() // ensures typeahead works
+          setOpen(o => !o)
+          triggerRef.current?.focus()
         }}
-        onKeyDown={handleType}
+        onKeyDown={handleKeyDown}
+        type="button"
       >
         <span>{label}: </span>
-        <strong>{formatLabel(value)}</strong>
+        <strong>{renderTriggerValue()}</strong>
         <svg width="16" height="16" viewBox="0 0 24 24">
           <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" fill="none" />
         </svg>
@@ -94,18 +183,37 @@ export default function Dropdown({ label, value, options, onChange }) {
 
       {open &&
         createPortal(
-          <div className="dropdown-menu" ref={menuRef} style={menuStyle}>
-            {options.map(opt => (
-              <div
-                key={opt}
-                className={`dropdown-item ${opt === value ? "active" : ""}`}
-                onClick={() => {
-                  onChange(opt)
-                  setOpen(false)
-                }}
-                dangerouslySetInnerHTML={{ __html: highlight(opt) }}
-              />
-            ))}
+          <div
+            className="dropdown-menu dropdown-menu--open"
+            ref={menuRef}
+            style={menuStyle}
+          >
+            {options.map((opt, idx) => {
+              const active = isMulti
+                ? Array.isArray(value) && value.includes(opt)
+                : opt === value
+
+              return (
+                <div
+                  key={opt}
+                  className={
+                    "dropdown-item" +
+                    (active ? " active" : "") +
+                    (idx === highlightedIndex ? " highlighted" : "")
+                  }
+                  onMouseEnter={() => setHighlightedIndex(idx)}
+                  onClick={() => {
+                    if (isMulti) {
+                      toggleMulti(opt)
+                    } else {
+                      onChange(opt)
+                      setOpen(false)
+                    }
+                  }}
+                  dangerouslySetInnerHTML={{ __html: highlight(opt) }}
+                />
+              )
+            })}
           </div>,
           document.body
         )}
