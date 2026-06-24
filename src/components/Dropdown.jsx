@@ -35,7 +35,7 @@ export default function Dropdown({ label, value, options, onChange }) {
         position: "absolute",
         top: rect.bottom + 6 + "px",
         left: rect.left + "px",
-        width: rect.width + "px",
+        width: "220px", // fixed width
         zIndex: 999999999,
       })
     }
@@ -50,7 +50,7 @@ export default function Dropdown({ label, value, options, onChange }) {
     setTyped(next)
 
     clearTimeout(typedTimeout.current)
-    typedTimeout.current = setTimeout(() => setTyped(""), 700)
+    typedTimeout.current = setTimeout(() => setTyped(""), 1500)
 
     const match = options.find(opt =>
       opt.toLowerCase().startsWith(next)
@@ -79,7 +79,10 @@ export default function Dropdown({ label, value, options, onChange }) {
       <button
         className="dropdown-trigger"
         ref={triggerRef}
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          setOpen(!open)
+          triggerRef.current?.focus() // ensures typeahead works
+        }}
         onKeyDown={handleType}
       >
         <span>{label}: </span>
