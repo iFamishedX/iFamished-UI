@@ -1,12 +1,20 @@
 import { useState, useRef, useEffect } from "react"
+import { createPortal } from "react-dom"
 
-export default function Dropdown({ label, options, value, onChange }) {
+export default function Dropdown({ label, value, options, onChange }) {
   const [open, setOpen] = useState(false)
-  const ref = useRef(null)
+  const triggerRef = useRef(null)
+  const menuRef = useRef(null)
 
+  // Close on outside click
   useEffect(() => {
     function handleClick(e) {
-      if (ref.current && !ref.current.contains(e.target)) {
+      if (
+        triggerRef.current &&
+        !triggerRef.current.contains(e.target) &&
+        menuRef.current &&
+        !menuRef.current.contains(e.target)
+      ) {
         setOpen(false)
       }
     }
@@ -14,9 +22,28 @@ export default function Dropdown({ label, options, value, onChange }) {
     return () => document.removeEventListener("mousedown", handleClick)
   }, [])
 
+  // Position menu under trigger
+  const [menuStyle, setMenuStyle] = useState({})
+  useEffect(() => {
+    if (open && triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect()
+      setMenuStyle({
+        position: "absolute",
+        top: rect.bottom + 6 + "px",
+        left: rect.left + "px",
+        width: rect.width + "px",
+        zIndex: 999999999,
+      })
+    }
+  }, [open])
+
   return (
-    <div className="dropdown" ref={ref}>
-      <button className="dropdown-trigger" onClick={() => setOpen(!open)}>
+    <>
+      <button
+        className="dropdown-trigger"
+        ref={triggerRef}
+        onClick={() => setOpen(!open)}
+      >
         <span>{label}: </span>
         <strong>{value}</strong>
         <svg width="16" height="16" viewBox="0 0 24 24">
@@ -24,22 +51,24 @@ export default function Dropdown({ label, options, value, onChange }) {
         </svg>
       </button>
 
-      {open && (
-        <div className="dropdown-menu">
-          {options.map(opt => (
-            <div
-              key={opt}
-              className={`dropdown-item ${opt === value ? "active" : ""}`}
-              onClick={() => {
-                onChange(opt)
-                setOpen(false)
-              }}
-            >
-              {opt}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+      {open &&
+        createPortal(
+          <div className="dropdown-menu" ref={menuRef} style={menuStyle}>
+            {options.map(opt => (
+              <div
+                key={opt}
+                className={`dropdown-item ${opt === value ? "active" : ""}`}
+                onClick={() => {
+                  onChange(opt)
+                  setOpen(false)
+                }}
+              >
+                {opt}
+              </div>
+            ))}
+          </div>,
+          document.body
+        )}
+    </>
   )
 }
