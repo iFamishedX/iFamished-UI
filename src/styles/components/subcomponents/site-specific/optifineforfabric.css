@@ -358,3 +358,14 @@
   justify-content: center;
   margin-bottom: var(--space-4);
 }
+
+/* Fix dropdown clipping */
+.section {
+  overflow: visible !important;
+  position: relative;
+  z-index: 1;
+}
+
+.page {
+  overflow: visible !important;
+}
