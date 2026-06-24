@@ -6,6 +6,7 @@ export { default as GlassButton } from "./components/GlassButton"
 export { default as GlassCard } from "./components/GlassCard"
 export { default as Icon } from "./components/Icon"
 export { default as Navbar } from "./components/Navbar"
+export { default as Searchbar } from "./components/Searchbar"
 export { default as StatPill } from "./components/StatPill"
 
 

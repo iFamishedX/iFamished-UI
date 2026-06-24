@@ -1,0 +1,25 @@
+.searchbar {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+}
+
+.searchbar input {
+  width: 100%;
+  max-width: 360px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  backdrop-filter: blur(12px);
+  font-size: 0.95rem;
+  transition: border-color 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.searchbar input:focus {
+  outline: none;
+  border-color: var(--neon-cyan);
+  background: var(--glass-bg-strong);
+}

@@ -6,7 +6,11 @@ export default function Dropdown({ label, value, options, onChange }) {
   const triggerRef = useRef(null)
   const menuRef = useRef(null)
 
-  // Close on outside click
+  // --- TYPEAHEAD STATE ---
+  const [typed, setTyped] = useState("")
+  const typedTimeout = useRef(null)
+
+  // --- CLOSE ON OUTSIDE CLICK ---
   useEffect(() => {
     function handleClick(e) {
       if (
@@ -22,7 +26,7 @@ export default function Dropdown({ label, value, options, onChange }) {
     return () => document.removeEventListener("mousedown", handleClick)
   }, [])
 
-  // Position menu under trigger
+  // --- POSITION MENU UNDER TRIGGER ---
   const [menuStyle, setMenuStyle] = useState({})
   useEffect(() => {
     if (open && triggerRef.current) {
@@ -37,15 +41,49 @@ export default function Dropdown({ label, value, options, onChange }) {
     }
   }, [open])
 
+  // --- TYPEAHEAD HANDLER ---
+  function handleType(e) {
+    const char = e.key.length === 1 ? e.key : null
+    if (!char) return
+
+    const next = typed + char.toLowerCase()
+    setTyped(next)
+
+    clearTimeout(typedTimeout.current)
+    typedTimeout.current = setTimeout(() => setTyped(""), 700)
+
+    const match = options.find(opt =>
+      opt.toLowerCase().startsWith(next)
+    )
+    if (match) onChange(match)
+  }
+
+  // --- CAPITALIZE LABELS ---
+  function formatLabel(opt) {
+    return opt.charAt(0).toUpperCase() + opt.slice(1)
+  }
+
+  // --- HIGHLIGHT MATCH ---
+  function highlight(opt) {
+    const label = formatLabel(opt)
+    if (!typed) return label
+
+    return label.replace(
+      new RegExp(`^(${typed})`, "i"),
+      `<strong style="color: var(--neon-cyan)">$1</strong>`
+    )
+  }
+
   return (
     <>
       <button
         className="dropdown-trigger"
         ref={triggerRef}
         onClick={() => setOpen(!open)}
+        onKeyDown={handleType}
       >
         <span>{label}: </span>
-        <strong>{value}</strong>
+        <strong>{formatLabel(value)}</strong>
         <svg width="16" height="16" viewBox="0 0 24 24">
           <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" fill="none" />
         </svg>
@@ -62,9 +100,8 @@ export default function Dropdown({ label, value, options, onChange }) {
                   onChange(opt)
                   setOpen(false)
                 }}
-              >
-                {opt}
-              </div>
+                dangerouslySetInnerHTML={{ __html: highlight(opt) }}
+              />
             ))}
           </div>,
           document.body
