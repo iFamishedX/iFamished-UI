@@ -185,9 +185,4 @@ h1, h2, h3, h4 {
   .stat-pill-value {
     font-size: 1.2rem;
   }
-
-  .cta-actions {
-    flex-direction: column;
-    align-items: center;
-  }
 }

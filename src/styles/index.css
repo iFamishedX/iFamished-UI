@@ -14,6 +14,7 @@
 
 /* Subcomponents */
 @import "./components/subcomponents/ContactSocials.css";
+@import "./components/subcomponents/Cta.css";
 @import "./components/subcomponents/Form.css";
 @import "./components/subcomponents/HomeHero.css";
 @import "./components/subcomponents/Overview.css";
