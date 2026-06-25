@@ -137,7 +137,7 @@ export default function Dropdown({ label, value, options, onChange }) {
 
   // highlight typed prefix
   function highlight(opt) {
-    const label = formatLabel(opt)
+    const label = (label === "Pack Version") ? opt : formatLabel(opt)
     if (!typed) return label
     return label.replace(
       new RegExp(`^(${typed})`, "i"),
@@ -159,7 +159,9 @@ export default function Dropdown({ label, value, options, onChange }) {
         type="button"
       >
         <span>{label}:</span>
-        <span className="dropdown-trigger-value">{formatLabel(value)}</span>
+        <span className="dropdown-trigger-value">
+          {label === "Pack Version" ? value : formatLabel(value)}
+        </span>
         <svg width="16" height="16" viewBox="0 0 24 24">
           <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" fill="none" />
         </svg>
@@ -187,7 +189,9 @@ export default function Dropdown({ label, value, options, onChange }) {
                   onChange(opt)
                   closeMenu()
                 }}
-                dangerouslySetInnerHTML={{ __html: highlight(opt) }}
+                dangerouslySetInnerHTML={{
+                  __html: label === "Pack Version" ? opt : highlight(opt)
+                }}
               />
             ))}
           </div>,
