@@ -2,22 +2,13 @@ import React from "react"
 
 /**
  * Icon — inline SVG icon component.
- * Usage: <Icon name="bolt" size={24} className="..." />
- *
- * Each icon entry includes a `viewBox` and `path` (JSX). This prevents clipping
- * for icons that use larger coordinate systems (Discord, Modrinth).
+ * All icons normalized to 24×24, stroke-based, centered, consistent.
  */
 
 const icons = {
   bolt: {
     viewBox: "0 0 24 24",
-    path: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"
-      />
-    ),
+    path: <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" strokeLinecap="round" strokeLinejoin="round" />
   },
 
   cpu: {
@@ -28,94 +19,61 @@ const icons = {
         <rect x="9" y="9" width="6" height="6" />
         <path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2" />
       </>
-    ),
+    )
   },
 
   star: {
     viewBox: "0 0 24 24",
-    path: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-      />
-    ),
+    path: <path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z" strokeLinecap="round" strokeLinejoin="round" />
   },
 
   sparkles: {
     viewBox: "0 0 24 24",
     path: (
       <>
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5L12 2z"
-        />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M19 14l.75 2.25L22 17l-2.25.75L19 20l-.75-2.25L16 17l2.25-.75L19 14z"
-        />
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M5 18l.5 1.5L7 20l-1.5.5L5 22l-.5-1.5L3 20l1.5-.5L5 18z"
-        />
+        <path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5z" />
+        <path d="M19 14l.7 2L22 17l-2.3.7L19 20l-.7-2.3L16 17l2.3-.7z" />
+        <path d="M5 18l.5 1.5L7 20l-1.5.5L5 22l-.5-1.5L3 20l1.5-.5z" />
       </>
-    ),
+    )
   },
 
   palette: {
     viewBox: "0 0 24 24",
     path: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c0 1.657-1.343 3-3 3h-1.5a1.5 1.5 0 000 3H19a1 1 0 010 2h-7zm-5-9a1 1 0 100-2 1 1 0 000 2zm3-4a1 1 0 100-2 1 1 0 000 2zm4 0a1 1 0 100-2 1 1 0 000 2zm3 4a1 1 0 100-2 1 1 0 000 2z"
-      />
-    ),
+      <path d="M12 22A10 10 0 1 1 22 12c0 1.7-1.3 3-3 3h-1.5a1.5 1.5 0 0 0 0 3H19a1 1 0 0 1 0 2h-7zM7 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3-4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm4 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+    )
   },
 
   zoom: {
     viewBox: "0 0 24 24",
     path: (
       <>
-        <circle cx="11" cy="11" r="8" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M11 8v6M8 11h6" />
+        <circle cx="11" cy="11" r="7" />
+        <path d="M21 21l-4.3-4.3" strokeLinecap="round" strokeLinejoin="round" />
       </>
-    ),
+    )
   },
 
   lightbulb: {
     viewBox: "0 0 24 24",
-    path: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M9 21h6M12 3a6 6 0 016 6c0 2.22-1.2 4.16-3 5.2V17H9v-2.8A6 6 0 0112 3z"
-      />
-    ),
+    path: <path d="M9 21h6M12 3a6 6 0 0 1 3 11v3H9v-3a6 6 0 0 1 3-11z" strokeLinecap="round" strokeLinejoin="round" />
   },
 
   puzzle: {
     viewBox: "0 0 24 24",
-    path: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 003 12a9 9 0 009 9 9.003 9.003 0 006.354-2.646zM14.5 8A1.5 1.5 0 0013 9.5V11h-1.5a1.5 1.5 0 000 3H13v1.5a1.5 1.5 0 003 0V14h1.5a1.5 1.5 0 000-3H16V9.5A1.5 1.5 0 0014.5 8z"
-      />
-    ),
+    path: <path d="M20 15a2 2 0 0 1-2 2h-3v-3a2 2 0 1 0-4 0v3H8a2 2 0 0 1-2-2v-3h3a2 2 0 1 0 0-4H6V8a2 2 0 0 1 2-2h3v3a2 2 0 1 0 4 0V6h3a2 2 0 0 1 2 2v3h-3a2 2 0 1 0 0 4h3z" />
   },
 
   download: {
     viewBox: "0 0 24 24",
     path: (
       <>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v13M7 11l5 5 5-5" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M3 19h18" />
+        <path d="M12 3v12" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M7 11l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M3 19h18" />
       </>
-    ),
+    )
   },
 
   checkCircle: {
@@ -123,9 +81,9 @@ const icons = {
     path: (
       <>
         <circle cx="12" cy="12" r="10" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M8 12l3 3 5-5" />
+        <path d="M8 12l3 3 5-5" strokeLinecap="round" strokeLinejoin="round" />
       </>
-    ),
+    )
   },
 
   xCircle: {
@@ -133,110 +91,87 @@ const icons = {
     path: (
       <>
         <circle cx="12" cy="12" r="10" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 9l-6 6M9 9l6 6" />
+        <path d="M15 9l-6 6M9 9l6 6" strokeLinecap="round" strokeLinejoin="round" />
       </>
-    ),
+    )
   },
 
   play: {
     viewBox: "0 0 24 24",
-    path: <path strokeLinecap="round" strokeLinejoin="round" d="M5 3l14 9-14 9V3z" />,
+    path: <path d="M6 4l12 8-12 8z" strokeLinecap="round" strokeLinejoin="round" />
   },
 
   folder: {
     viewBox: "0 0 24 24",
-    path: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"
-      />
-    ),
+    path: <path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
   },
 
   tool: {
     viewBox: "0 0 24 24",
-    path: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"
-      />
-    ),
+    path: <path d="M14 6l4 4-6 6-4-4 6-6zM3 21l6-6" strokeLinecap="round" strokeLinejoin="round" />
   },
 
   cube: {
     viewBox: "0 0 24 24",
-    path: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-.375c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v.375c0 .621.504 1.125 1.125 1.125z"
-      />
-    ),
+    path: <path d="M12 2l9 5v10l-9 5-9-5V7zM12 2v20M3 7l9 5 9-5" strokeLinecap="round" strokeLinejoin="round" />
   },
 
   github: {
     viewBox: "0 0 24 24",
     path: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 2C6.48 2 2 6.58 2 12.26c0 4.5 2.87 8.31 6.84 9.66.5.1.68-.22.68-.48v-1.7c-2.78.62-3.37-1.37-3.37-1.37-.46-1.2-1.12-1.52-1.12-1.52-.92-.65.07-.64.07-.64 1.02.07 1.56 1.07 1.56 1.07.9 1.58 2.36 1.12 2.94.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.08 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.7 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0112 6.8c.85 0 1.7.12 2.5.35 1.9-1.33 2.74-1.05 2.74-1.05.55 1.4.2 2.44.1 2.7.64.72 1.03 1.63 1.03 2.75 0 3.95-2.34 4.82-4.57 5.07.36.32.68.94.68 1.9v2.82c0 .26.18.58.69.48A10.3 10.3 0 0022 12.26C22 6.58 17.52 2 12 2z"
-      />
-    ),
+      <path d="M12 2a10 10 0 0 0-3 19.5c.5.1.7-.2.7-.5v-2c-2.8.6-3.4-1.4-3.4-1.4-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.6 1.1 1.6 1.1.9 1.6 2.4 1.1 3 .9.1-.7.4-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5.1 0-1.1.4-2 1-2.7-.1-.3-.5-1.3.1-2.7 0 0 .8-.3 2.7 1a9 9 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 4-2.3 4.8-4.6 5.1.4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2z" />
+    )
   },
 
   discord: {
-    viewBox: "0 0 128 128",
+    viewBox: "0 0 24 24",
     path: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,48,6.83,72.37,72.37,0,0,0,44.64,0,105.89,105.89,0,0,0,18.39,8.09C2.62,31.65-1.52,54.6.46,77.24A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.68,77.23C128.91,52.84,123.46,30,107.7,8.07ZM42.57,65.69c-6.23,0-11.31-5.72-11.31-12.75S36.25,40.19,42.57,40.19s11.39,5.74,11.31,12.75C53.88,59.97,48.8,65.69,42.57,65.69Zm42,0c-6.23,0-11.31-5.72-11.31-12.75S78.25,40.19,84.57,40.19s11.39,5.74,11.31,12.75C95.88,59.97,90.8,65.69,84.57,65.69Z"
-      />
-    ),
+      <>
+        <path d="M7.5 4.5c1.2-.4 2.5-.7 4-.7s2.8.3 4 .7l.5 1.8c1.1.3 2 .8 2.8 1.4-.7 4.7-3.5 7.5-7.3 7.5s-6.6-2.8-7.3-7.5c.8-.6 1.7-1.1 2.8-1.4l.5-1.8z" />
+        <circle cx="9" cy="11" r="1" />
+        <circle cx="15" cy="11" r="1" />
+      </>
+    )
   },
 
   modrinth: {
-    viewBox: "0 0 128 128",
+    viewBox: "0 0 24 24",
     path: (
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12.252.004a11.78 11.768 0 0 0-8.92 3.73a11 11 0 0 0-2.17 3.11a11.37 11.359 0 0 0-1.16 5.169c0 1.42.17 2.5.6 3.77c.24.759.77 1.899 1.17 2.529a12.3 12.298 0 0 0 8.85 5.639c.44.05 2.54.07 2.76.02c.2-.04.22.1-.26-1.7l-.36-1.37l-1.01-.06a8.5 8.489 0 0 1-5.18-1.8a5.3 5.3 0 0 1-1.3-1.26c0-.05.34-.28.74-.5a37.572 37.545 0 0 1 2.88-1.629c.03 0 .5.45 1.06.98l1 .97l2.07-.43l2.06-.43l1.47-1.47c.8-.8 1.48-1.5 1.48-1.52c0-.09-.42-1.63-.46-1.7c-.04-.06-.2-.03-1.02.18c-.53.13-1.2.3-1.45.4l-.48.15l-.53.53l-.53.53l-.93.1l-.93.07l-.52-.5a2.7 2.7 0 0 1-.96-1.7l-.13-.6l.43-.57c.68-.9.68-.9 1.46-1.1c.4-.1.65-.2.83-.33c.13-.099.65-.579 1.14-1.069l.9-.9l-.7-.7l-.7-.7l-1.95.54c-1.07.3-1.96.53-1.97.53c-.03 0-2.23 2.48-2.63 2.97l-.29.35l.28 1.03c.16.56.3 1.16.31 1.34l.03.3l-.34.23c-.37.23-2.22 1.3-2.84 1.63c-.36.2-.37.2-.44.1c-.08-.1-.23-.6-.32-1.03c-.18-.86-.17-2.75.02-3.73a8.84 8.84 0 0 1 7.9-6.93c.43-.03.77-.08.78-.1c.06-.17.5-2.999.47-3.039c-.01-.02-.1-.02-.2-.03Zm3.68.67c-.2 0-.3.1-.37.38c-.06.23-.46 2.42-.46 2.52c0 .04.1.11.22.16a8.51 8.499 0 0 1 2.99 2a8.38 8.379 0 0 1 2.16 3.449a6.9 6.9 0 0 1 .4 2.8c0 1.07 0 1.27-.1 1.73a9.4 9.4 0 0 1-1.76 3.769c-.32.4-.98 1.06-1.37 1.38c-.38.32-1.54 1.1-1.7 1.14c-.1.03-.1.06-.07.26c.03.18.64 2.56.7 2.78l.06.06a12.07 12.058 0 0 0 7.27-9.4c.13-.77.13-2.58 0-3.4a11.96 11.948 0 0 0-5.73-8.578c-.7-.42-2.05-1.06-2.25-1.06Z"
-      />
-    ),
+      <>
+        <rect x="3" y="3" width="18" height="18" rx="3" />
+        <path d="M8 8h3v8H8zM13 8h3v5h-3z" />
+      </>
+    )
   },
 
   arrowRight: {
     viewBox: "0 0 24 24",
-    path: <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />,
+    path: <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
   },
 
   chevronDown: {
     viewBox: "0 0 24 24",
-    path: <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />,
+    path: <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
   },
 
   warning: {
     viewBox: "0 0 24 24",
     path: (
       <>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v4M12 17h.01" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+        <path d="M12 9v4M12 17h.01" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M10.3 4L2 20a2 2 0 0 0 2 3h16a2 2 0 0 0 2-3L13.7 4a2 2 0 0 0-3.4 0z" />
       </>
-    ),
+    )
   },
 
   check: {
     viewBox: "0 0 24 24",
-    path: <path strokeLinecap="round" strokeLinejoin="round" d="M20 6L9 17l-5-5" />,
+    path: <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round" />
   },
 
   x: {
     viewBox: "0 0 24 24",
-    path: <path strokeLinecap="round" strokeLinejoin="round" d="M18 6L6 18M6 6l12 12" />,
+    path: <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" strokeLinejoin="round" />
   },
 
   battery: {
@@ -244,11 +179,10 @@ const icons = {
     path: (
       <>
         <rect x="2" y="7" width="16" height="10" rx="2" />
-        <path strokeLinecap="round" d="M22 11v2" />
-        <path strokeLinecap="round" d="M6 11h8" />
+        <path d="M22 11v2" />
       </>
-    ),
-  },
+    )
+  }
 }
 
 export default function Icon({ name, size = 20, className = "", strokeWidth = 1.75 }) {
