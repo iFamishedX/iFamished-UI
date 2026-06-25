@@ -63,6 +63,35 @@
   transform: scale(0.97);
   transform-origin: top;
   transition: opacity 0.15s var(--ease), transform 0.15s var(--ease);
+
+  /* Hide native scrollbar (Firefox) */
+  scrollbar-width: none;
+}
+
+/* Hide native scrollbar (Chrome/Safari/Edge) */
+.dropdown-menu::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Custom scrollbar thumb overlay */
+.dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 4px;
+  height: calc(100% - 8px);
+  background: var(--glass-border-strong);
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.2s var(--ease);
+  pointer-events: none;
+}
+
+/* Show custom scrollbar while scrolling */
+.dropdown-menu.scrolling::before {
+  opacity: 1;
 }
 
 /* When open */
