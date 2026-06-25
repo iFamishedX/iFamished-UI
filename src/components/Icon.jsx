@@ -54,9 +54,21 @@ const icons = {
     stroke: true,
     path: (
       <>
-        <path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5L12 2z" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M19 14l.75 2.25L22 17l-2.25.75L19 20l-.75-2.25L16 17l2.25-.75L19 14z" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M5 18l.5 1.5L7 20l-1.5.5L5 22l-.5-1.5L3 20l1.5-.5L5 18z" strokeLinecap="round" strokeLinejoin="round" />
+        <path
+          d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5L12 2z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M19 14l.75 2.25L22 17l-2.25.75L19 20l-.75-2.25L16 17l2.25-.75L19 14z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M5 18l.5 1.5L7 20l-1.5.5L5 22l-.5-1.5L3 20l1.5-.5L5 18z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </>
     ),
   },
