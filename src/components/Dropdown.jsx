@@ -4,8 +4,8 @@ import { createPortal } from "react-dom"
 const ANIMATION_DURATION = 150 // ms
 
 export default function Dropdown({ label, value, options, onChange }) {
-  const [open, setOpen] = useState(false)        // visual state (for CSS)
-  const [mounted, setMounted] = useState(false)  // portal mount
+  const [mounted, setMounted] = useState(false) // portal exists
+  const [open, setOpen] = useState(false)       // animation state
   const triggerRef = useRef(null)
   const menuRef = useRef(null)
 
@@ -14,16 +14,18 @@ export default function Dropdown({ label, value, options, onChange }) {
   const [highlightedIndex, setHighlightedIndex] = useState(0)
   const [menuStyle, setMenuStyle] = useState({})
 
-  function showMenu() {
+  // open/close with animation
+  function openMenu() {
     if (!mounted) setMounted(true)
     requestAnimationFrame(() => setOpen(true))
   }
 
-  function hideMenu() {
+  function closeMenu() {
     setOpen(false)
     setTimeout(() => setMounted(false), ANIMATION_DURATION)
   }
 
+  // outside click close
   useEffect(() => {
     function handleClick(e) {
       if (
@@ -32,49 +34,35 @@ export default function Dropdown({ label, value, options, onChange }) {
         menuRef.current &&
         !menuRef.current.contains(e.target)
       ) {
-        hideMenu()
+        closeMenu()
       }
     }
     document.addEventListener("mousedown", handleClick)
     return () => document.removeEventListener("mousedown", handleClick)
   }, [])
 
+  // position dropdown under trigger
   useEffect(() => {
     if (!mounted || !triggerRef.current) return
 
     const rect = triggerRef.current.getBoundingClientRect()
-    const base = {
+
+    setMenuStyle({
       position: "absolute",
+      top: rect.bottom + 6 + "px",
       left: rect.left + "px",
       width: "220px",
       zIndex: 999999999,
-    }
-
-    let style = {
-      ...base,
-      top: rect.bottom + 6 + "px",
-    }
-    setMenuStyle(style)
-
-    requestAnimationFrame(() => {
-      if (!menuRef.current) return
-      const menuRect = menuRef.current.getBoundingClientRect()
-      const overflowBottom = menuRect.bottom > window.innerHeight
-      if (overflowBottom) {
-        style = {
-          ...base,
-          top: rect.top - menuRect.height - 6 + "px",
-        }
-        setMenuStyle(style)
-      }
     })
   }, [mounted])
 
+  // format label
   function formatLabel(opt) {
     if (!opt) return "All"
     return opt.charAt(0).toUpperCase() + opt.slice(1)
   }
 
+  // typeahead
   function handleType(e) {
     const char = e.key.length === 1 ? e.key : null
     if (!char) return
@@ -87,42 +75,67 @@ export default function Dropdown({ label, value, options, onChange }) {
 
     const lower = options.map(o => o.toLowerCase())
 
+    // exact match first
     let idx = lower.findIndex(o => o === next)
     if (idx === -1) {
+      // then prefix match
       idx = lower.findIndex(o => o.startsWith(next))
     }
+
     if (idx !== -1) {
       setHighlightedIndex(idx)
       onChange(options[idx])
+
+      // smooth scroll
+      menuRef.current?.children[idx]?.scrollIntoView({
+        block: "nearest",
+        behavior: "smooth",
+      })
     }
   }
 
+  // arrow key navigation
   function handleKeyDown(e) {
     if (!mounted && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
-      showMenu()
+      openMenu()
       return
     }
 
     if (e.key === "ArrowDown") {
       e.preventDefault()
-      setHighlightedIndex(i => (i + 1) % options.length)
+      setHighlightedIndex(i => {
+        const next = (i + 1) % options.length
+        menuRef.current?.children[next]?.scrollIntoView({
+          block: "nearest",
+          behavior: "smooth",
+        })
+        return next
+      })
     } else if (e.key === "ArrowUp") {
       e.preventDefault()
-      setHighlightedIndex(i => (i - 1 + options.length) % options.length)
+      setHighlightedIndex(i => {
+        const next = (i - 1 + options.length) % options.length
+        menuRef.current?.children[next]?.scrollIntoView({
+          block: "nearest",
+          behavior: "smooth",
+        })
+        return next
+      })
     } else if (e.key === "Enter") {
       e.preventDefault()
       const opt = options[highlightedIndex]
       if (!opt) return
       onChange(opt)
-      hideMenu()
+      closeMenu()
     } else if (e.key === "Escape") {
       e.preventDefault()
-      hideMenu()
+      closeMenu()
     } else {
       handleType(e)
     }
   }
 
+  // highlight typed prefix
   function highlight(opt) {
     const label = formatLabel(opt)
     if (!typed) return label
@@ -138,20 +151,15 @@ export default function Dropdown({ label, value, options, onChange }) {
         className="dropdown-trigger"
         ref={triggerRef}
         onClick={() => {
-          if (mounted && open) {
-            hideMenu()
-          } else {
-            showMenu()
-          }
+          if (mounted && open) closeMenu()
+          else openMenu()
           triggerRef.current?.focus()
         }}
         onKeyDown={handleKeyDown}
         type="button"
       >
         <span>{label}:</span>
-        <span className="dropdown-trigger-value">
-          {formatLabel(value)}
-        </span>
+        <span className="dropdown-trigger-value">{formatLabel(value)}</span>
         <svg width="16" height="16" viewBox="0 0 24 24">
           <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" fill="none" />
         </svg>
@@ -177,7 +185,7 @@ export default function Dropdown({ label, value, options, onChange }) {
                 onMouseEnter={() => setHighlightedIndex(idx)}
                 onClick={() => {
                   onChange(opt)
-                  hideMenu()
+                  closeMenu()
                 }}
                 dangerouslySetInnerHTML={{ __html: highlight(opt) }}
               />
