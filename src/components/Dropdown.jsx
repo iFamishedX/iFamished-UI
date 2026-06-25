@@ -14,7 +14,9 @@ export default function Dropdown({ label, value, options, onChange }) {
   const [highlightedIndex, setHighlightedIndex] = useState(0)
   const [menuStyle, setMenuStyle] = useState({})
 
-  // open/close with animation
+  // -----------------------------
+  // OPEN / CLOSE WITH ANIMATION
+  // -----------------------------
   function openMenu() {
     if (!mounted) setMounted(true)
     requestAnimationFrame(() => setOpen(true))
@@ -25,7 +27,9 @@ export default function Dropdown({ label, value, options, onChange }) {
     setTimeout(() => setMounted(false), ANIMATION_DURATION)
   }
 
-  // outside click close
+  // -----------------------------
+  // OUTSIDE CLICK CLOSE
+  // -----------------------------
   useEffect(() => {
     function handleClick(e) {
       if (
@@ -41,7 +45,9 @@ export default function Dropdown({ label, value, options, onChange }) {
     return () => document.removeEventListener("mousedown", handleClick)
   }, [])
 
-  // position dropdown under trigger
+  // -----------------------------
+  // POSITION DROPDOWN UNDER TRIGGER
+  // -----------------------------
   useEffect(() => {
     if (!mounted || !triggerRef.current) return
 
@@ -56,13 +62,17 @@ export default function Dropdown({ label, value, options, onChange }) {
     })
   }, [mounted])
 
-  // format label
+  // -----------------------------
+  // FORMAT LABEL (for non-pack dropdowns)
+  // -----------------------------
   function formatLabel(opt) {
     if (!opt) return "All"
     return opt.charAt(0).toUpperCase() + opt.slice(1)
   }
 
-  // typeahead
+  // -----------------------------
+  // TYPEAHEAD
+  // -----------------------------
   function handleType(e) {
     const char = e.key.length === 1 ? e.key : null
     if (!char) return
@@ -94,7 +104,9 @@ export default function Dropdown({ label, value, options, onChange }) {
     }
   }
 
-  // arrow key navigation
+  // -----------------------------
+  // ARROW KEY NAVIGATION
+  // -----------------------------
   function handleKeyDown(e) {
     if (!mounted && (e.key === "ArrowDown" || e.key === "ArrowUp")) {
       openMenu()
@@ -135,11 +147,15 @@ export default function Dropdown({ label, value, options, onChange }) {
     }
   }
 
-  // highlight typed prefix
+  // -----------------------------
+  // HIGHLIGHT (for non-pack dropdowns)
+  // -----------------------------
   function highlight(opt) {
-    const label = (label === "Pack Version") ? opt : formatLabel(opt)
-    if (!typed) return label
-    return label.replace(
+    const formatted = formatLabel(opt)
+
+    if (!typed) return formatted
+
+    return formatted.replace(
       new RegExp(`^(${typed})`, "i"),
       `<strong style="color: var(--neon-cyan)">$1</strong>`
     )
@@ -159,9 +175,12 @@ export default function Dropdown({ label, value, options, onChange }) {
         type="button"
       >
         <span>{label}:</span>
+
+        {/* Pack Version bypass */}
         <span className="dropdown-trigger-value">
           {label === "Pack Version" ? value : formatLabel(value)}
         </span>
+
         <svg width="16" height="16" viewBox="0 0 24 24">
           <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" fill="none" />
         </svg>
@@ -190,7 +209,10 @@ export default function Dropdown({ label, value, options, onChange }) {
                   closeMenu()
                 }}
                 dangerouslySetInnerHTML={{
-                  __html: label === "Pack Version" ? opt : highlight(opt)
+                  __html:
+                    label === "Pack Version"
+                      ? opt
+                      : highlight(opt)
                 }}
               />
             ))}
