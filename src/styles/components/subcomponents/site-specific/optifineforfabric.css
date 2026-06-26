@@ -325,3 +325,8 @@
   margin-bottom: var(--space-2);
   text-align: center;
 }
+
+/* Download buttons side-by-side */
+.download-actions .glass-btn {
+  flex: 1;
+}
