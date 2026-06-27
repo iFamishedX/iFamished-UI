@@ -47,42 +47,13 @@ h1, h2, h3, h4 {
 /* Scroll-reveal entrance (JS-free, CSS-only stagger)                  */
 /* ------------------------------------------------------------------ */
 
+/* Infinite index-driven stagger */
 .stagger > * {
-  animation: fadeInUp 0.55s var(--ease) both;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.55s var(--ease) forwards;
+  animation-delay: calc(var(--i, 0) * 0.06s);
 }
-.stagger > *:nth-child(1)  { animation-delay: 0.04s; }
-.stagger > *:nth-child(2)  { animation-delay: 0.10s; }
-.stagger > *:nth-child(3)  { animation-delay: 0.16s; }
-.stagger > *:nth-child(4)  { animation-delay: 0.22s; }
-.stagger > *:nth-child(5)  { animation-delay: 0.28s; }
-.stagger > *:nth-child(6)  { animation-delay: 0.34s; }
-.stagger > *:nth-child(7)  { animation-delay: 0.40s; }
-.stagger > *:nth-child(8)  { animation-delay: 0.46s; }
-.stagger > *:nth-child(9)  { animation-delay: 0.52s; }
-.stagger > *:nth-child(10) { animation-delay: 0.58s; }
-
-.stagger > *:nth-child(11) { animation-delay: 0.64s; }
-.stagger > *:nth-child(12) { animation-delay: 0.70s; }
-.stagger > *:nth-child(13) { animation-delay: 0.76s; }
-.stagger > *:nth-child(14) { animation-delay: 0.82s; }
-.stagger > *:nth-child(15) { animation-delay: 0.88s; }
-.stagger > *:nth-child(16) { animation-delay: 0.94s; }
-.stagger > *:nth-child(17) { animation-delay: 1.00s; }
-.stagger > *:nth-child(18) { animation-delay: 1.06s; }
-.stagger > *:nth-child(19) { animation-delay: 1.12s; }
-.stagger > *:nth-child(20) { animation-delay: 1.18s; }
-
-.stagger > *:nth-child(21) { animation-delay: 1.24s; }
-.stagger > *:nth-child(22) { animation-delay: 1.30s; }
-.stagger > *:nth-child(23) { animation-delay: 1.36s; }
-.stagger > *:nth-child(24) { animation-delay: 1.42s; }
-.stagger > *:nth-child(25) { animation-delay: 1.48s; }
-.stagger > *:nth-child(26) { animation-delay: 1.54s; }
-.stagger > *:nth-child(27) { animation-delay: 1.60s; }
-.stagger > *:nth-child(28) { animation-delay: 1.66s; }
-.stagger > *:nth-child(29) { animation-delay: 1.72s; }
-.stagger > *:nth-child(30) { animation-delay: 1.78s; }
-
 
 /* ------------------------------------------------------------------ */
 /* Hero                                                                */
