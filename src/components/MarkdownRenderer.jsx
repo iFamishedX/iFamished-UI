@@ -2,73 +2,79 @@ export default function MarkdownRenderer({ text }) {
   const lines = text.split("\n")
 
   const elements = []
-  let buffer = []
-  let inCode = false
-  let codeLang = ""
-  let codeBuffer = []
+  let i = 0
 
-  function flushParagraph() {
+  function pushParagraph(buffer) {
     if (buffer.length > 0) {
       elements.push(
         <p className="md-p" key={elements.length}>
           {buffer.join(" ")}
         </p>
       )
-      buffer = []
     }
   }
 
-  for (let raw of lines) {
+  while (i < lines.length) {
+    const raw = lines[i]
     const line = raw.trim()
 
-    // Code block start/end
+    // -------------------------
+    // CODE BLOCKS (```lang)
+    // -------------------------
     if (line.startsWith("```")) {
-      if (!inCode) {
-        inCode = true
-        codeLang = line.replace("```", "").trim()
-        codeBuffer = []
-      } else {
-        inCode = false
-        elements.push(
-          <pre className="md-pre" key={elements.length}>
-            <code className={`lang-${codeLang}`}>{codeBuffer.join("\n")}</code>
-          </pre>
-        )
+      const lang = line.slice(3).trim()
+      i++
+      const code = []
+
+      while (i < lines.length && !lines[i].trim().startsWith("```")) {
+        code.push(lines[i])
+        i++
       }
+
+      // Skip closing ```
+      i++
+
+      elements.push(
+        <pre className="md-pre" key={elements.length}>
+          <code className={`lang-${lang}`}>{code.join("\n")}</code>
+        </pre>
+      )
       continue
     }
 
-    if (inCode) {
-      codeBuffer.push(raw)
-      continue
-    }
-
-    // Headings
+    // -------------------------
+    // HEADINGS
+    // -------------------------
     if (line.startsWith("# ")) {
-      flushParagraph()
       elements.push(<h1 className="md-h1" key={elements.length}>{line.slice(2)}</h1>)
+      i++
       continue
     }
     if (line.startsWith("## ")) {
-      flushParagraph()
       elements.push(<h2 className="md-h2" key={elements.length}>{line.slice(3)}</h2>)
+      i++
       continue
     }
     if (line.startsWith("### ")) {
-      flushParagraph()
       elements.push(<h3 className="md-h3" key={elements.length}>{line.slice(4)}</h3>)
+      i++
       continue
     }
 
-    // Bulleted list
+    // -------------------------
+    // BULLETED LISTS
+    // -------------------------
     if (line.startsWith("- ") || line.startsWith("* ")) {
-      flushParagraph()
       const items = []
-      let i = lines.indexOf(raw)
-      while (i < lines.length && (lines[i].trim().startsWith("- ") || lines[i].trim().startsWith("* "))) {
+
+      while (
+        i < lines.length &&
+        (lines[i].trim().startsWith("- ") || lines[i].trim().startsWith("* "))
+      ) {
         items.push(lines[i].trim().slice(2))
         i++
       }
+
       elements.push(
         <ul className="md-ul" key={elements.length}>
           {items.map((item, idx) => (
@@ -79,22 +85,34 @@ export default function MarkdownRenderer({ text }) {
       continue
     }
 
-    // Horizontal rule
+    // -------------------------
+    // HORIZONTAL RULE
+    // -------------------------
     if (line === "---") {
-      flushParagraph()
       elements.push(<hr className="md-hr" key={elements.length} />)
+      i++
       continue
     }
 
-    // Normal paragraph text
+    // -------------------------
+    // PARAGRAPHS
+    // -------------------------
     if (line.length > 0) {
-      buffer.push(line)
-    } else {
-      flushParagraph()
-    }
-  }
+      const buffer = [line]
+      i++
 
-  flushParagraph()
+      while (i < lines.length && lines[i].trim().length > 0) {
+        buffer.push(lines[i].trim())
+        i++
+      }
+
+      pushParagraph(buffer)
+      continue
+    }
+
+    // Blank line → skip
+    i++
+  }
 
   return <div className="markdown-body">{elements}</div>
 }
