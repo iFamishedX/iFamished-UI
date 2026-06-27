@@ -12,8 +12,11 @@ export default function MarkdownRenderer({ text }) {
     // Bold: **text**
     str = str.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
 
-    // Italic: *text*
-    str = str.replace(/\*([^*]+)\*/g, "<em>$1</em>")
+    // Italic: *text* (single asterisk, not bold)
+    str = str.replace(/(^|[^*])\*([^*]+)\*(?!\*)/g, "$1<em>$2</em>")
+
+    // Italic: _text_ (single underscore only)
+    str = str.replace(/(^|[^_])_([^_]+)_(?!_)/g, "$1<em>$2</em>")
 
     // Links: [text](url)
     str = str.replace(/\[([^\]]+)\]\(([^)]+)\)/g, "<a href='$2' target='_blank'>$1</a>")
