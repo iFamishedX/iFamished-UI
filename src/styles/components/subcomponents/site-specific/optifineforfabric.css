@@ -320,19 +320,6 @@
 }
 
 /* DownloadVersion.jsx */
-/* .version-links {
-  display: flex;
-  gap: var(--space-2);
-  flex-wrap: wrap;
-}
-
-.changelog {
-  white-space: pre-wrap;
-  font-family: var(--mono);
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-} */
-
 .version-page {
   max-width: 800px;
   margin: 0 auto;
@@ -350,7 +337,9 @@
   display: flex;
   justify-content: center;
   gap: var(--space-2);
+  margin-top: var(--space-3);
   margin-bottom: var(--space-4);
+  flex-wrap: wrap;
   font-family: var(--mono);
   font-size: 0.9rem;
   color: var(--text-muted);
@@ -370,7 +359,31 @@
 
 .markdown-body {
   color: var(--text-secondary);
-  line-height: 1.65;
+  line-height: 1.7;
   font-size: 0.95rem;
-  white-space: pre-wrap;
+  /* white-space: pre-wrap; */
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-body li {
+  margin-bottom: 0.35rem;
+}
+
+.markdown-body pre {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  padding: 12px 14px;
+  overflow-x: auto;
+  border: 1px solid var(--glass-border);
+  margin-bottom: 1rem;
+}
+
+.markdown-body code {
+  font-family: var(--mono);
+  font-size: 0.85rem;
 }
