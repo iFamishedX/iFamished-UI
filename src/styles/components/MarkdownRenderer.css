@@ -29,6 +29,24 @@
 
 .md-li {
   margin-bottom: 0.35rem;
+  list-style-type: disc;
+}
+
+.md-ul .md-ul .md-li {
+  list-style-type: circle;
+}
+
+.md-ul .md-ul .md-ul .md-li {
+  list-style-type: square;
+}
+
+/* Inline code */
+.md-inline-code {
+  background: rgba(255,255,255,0.08);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 0.85rem;
 }
 
 /* Code blocks */
@@ -45,4 +63,22 @@
   font-family: var(--mono);
   font-size: 0.85rem;
   white-space: pre;
+}
+
+/* Tables */
+.md-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.md-table th,
+.md-table td {
+  border: 1px solid var(--glass-border);
+  padding: 8px 10px;
+}
+
+.md-table th {
+  background: rgba(255,255,255,0.05);
+  font-weight: 600;
 }

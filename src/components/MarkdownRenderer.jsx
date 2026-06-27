@@ -1,17 +1,24 @@
+import React from "react"
+
 export default function MarkdownRenderer({ text }) {
   const lines = text.split("\n")
-
   const elements = []
   let i = 0
 
-  function pushParagraph(buffer) {
-    if (buffer.length > 0) {
-      elements.push(
-        <p className="md-p" key={elements.length}>
-          {buffer.join(" ")}
-        </p>
-      )
-    }
+  function renderInline(str) {
+    // Inline code: `code`
+    str = str.replace(/`([^`]+)`/g, "<code class='md-inline-code'>$1</code>")
+
+    // Bold: **text**
+    str = str.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+
+    // Italic: *text*
+    str = str.replace(/\*([^*]+)\*/g, "<em>$1</em>")
+
+    // Links: [text](url)
+    str = str.replace(/\[([^\]]+)\]\(([^)]+)\)/g, "<a href='$2' target='_blank'>$1</a>")
+
+    return str
   }
 
   while (i < lines.length) {
@@ -31,8 +38,7 @@ export default function MarkdownRenderer({ text }) {
         i++
       }
 
-      // Skip closing ```
-      i++
+      i++ // skip closing ```
 
       elements.push(
         <pre className="md-pre" key={elements.length}>
@@ -62,35 +68,100 @@ export default function MarkdownRenderer({ text }) {
     }
 
     // -------------------------
-    // BULLETED LISTS
+    // NESTED LISTS (supports up to 3 levels)
     // -------------------------
-    if (line.startsWith("- ") || line.startsWith("* ")) {
-      const items = []
+    if (/^(\s*)([-*])\s+/.test(raw)) {
+      const listItems = []
+      const baseIndent = raw.match(/^(\s*)/)[1].length
 
-      while (
-        i < lines.length &&
-        (lines[i].trim().startsWith("- ") || lines[i].trim().startsWith("* "))
-      ) {
-        items.push(lines[i].trim().slice(2))
+      while (i < lines.length) {
+        const m = lines[i].match(/^(\s*)([-*])\s+(.*)/)
+        if (!m) break
+
+        const indent = m[1].length
+        const content = renderInline(m[3])
+
+        if (indent < baseIndent) break
+
+        listItems.push({ indent, content })
         i++
+      }
+
+      // Build nested structure
+      function buildList(items, level = 0) {
+        const ul = []
+
+        while (items.length > 0) {
+          const item = items[0]
+
+          if (item.indent !== level) break
+
+          items.shift()
+
+          // Check for nested items
+          const nested = []
+          while (items.length > 0 && items[0].indent > level) {
+            nested.push(items.shift())
+          }
+
+          ul.push(
+            <li className="md-li" key={ul.length}>
+              <span dangerouslySetInnerHTML={{ __html: item.content }} />
+              {nested.length > 0 && (
+                <ul className="md-ul">{buildList(nested, level + 2)}</ul>
+              )}
+            </li>
+          )
+        }
+
+        return ul
       }
 
       elements.push(
         <ul className="md-ul" key={elements.length}>
-          {items.map((item, idx) => (
-            <li className="md-li" key={idx}>{item}</li>
-          ))}
+          {buildList(listItems)}
         </ul>
       )
+
       continue
     }
 
     // -------------------------
-    // HORIZONTAL RULE
+    // TABLES
     // -------------------------
-    if (line === "---") {
-      elements.push(<hr className="md-hr" key={elements.length} />)
+    if (line.includes("|") && lines[i + 1]?.includes("|---")) {
+      const header = line.split("|").map(c => c.trim()).filter(Boolean)
       i++
+      i++ // skip separator row
+
+      const rows = []
+      while (i < lines.length && lines[i].includes("|")) {
+        rows.push(
+          lines[i].split("|").map(c => c.trim()).filter(Boolean)
+        )
+        i++
+      }
+
+      elements.push(
+        <table className="md-table" key={elements.length}>
+          <thead>
+            <tr>
+              {header.map((h, idx) => (
+                <th key={idx}>{renderInline(h)}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, r) => (
+              <tr key={r}>
+                {row.map((cell, c) => (
+                  <td key={c} dangerouslySetInnerHTML={{ __html: renderInline(cell) }} />
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )
       continue
     }
 
@@ -98,19 +169,24 @@ export default function MarkdownRenderer({ text }) {
     // PARAGRAPHS
     // -------------------------
     if (line.length > 0) {
-      const buffer = [line]
+      const buffer = [renderInline(line)]
       i++
 
       while (i < lines.length && lines[i].trim().length > 0) {
-        buffer.push(lines[i].trim())
+        buffer.push(renderInline(lines[i].trim()))
         i++
       }
 
-      pushParagraph(buffer)
+      elements.push(
+        <p
+          className="md-p"
+          key={elements.length}
+          dangerouslySetInnerHTML={{ __html: buffer.join(" ") }}
+        />
+      )
       continue
     }
 
-    // Blank line → skip
     i++
   }
 
