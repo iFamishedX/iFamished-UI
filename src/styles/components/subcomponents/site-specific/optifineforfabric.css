@@ -91,13 +91,6 @@
   line-height: 1.55;
 }
 
-.download-actions {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  width: 100%;
-}
-
 /* Features */
 .features-grid {
   display: grid;
@@ -327,6 +320,15 @@
 }
 
 /* Download buttons side-by-side */
+.download-actions {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-2);
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
 .download-actions .glass-btn {
   flex: 1;
+  width: auto !important;
 }
