@@ -10,7 +10,13 @@ export default function MarkdownRenderer({ text }) {
     str = str.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     str = str.replace(/(^|[^*])\*([^*]+)\*(?!\*)/g, "$1<em>$2</em>")
     str = str.replace(/(^|[^_])_([^_]+)_(?!_)/g, "$1<em>$2</em>")
-    str = str.replace(/\[([^\]]+)\]\(([^)]+)\)/g, "<a href='$2' target='_blank'>$1</a>")
+    str = str.replace(/
+
+\[([^\]
+
+]+)\]
+
+\(([^)]+)\)/g, "<a href='$2' target='_blank'>$1</a>")
     return str
   }
 
@@ -61,18 +67,17 @@ export default function MarkdownRenderer({ text }) {
     }
 
     // -------------------------
-    // NESTED LISTS (fully working)
+    // NESTED LISTS (supports all bullet characters)
     // -------------------------
-    if (/^([ \t]*)([-*])\s+/.test(raw)) {
+    if (/^([ \t]*)([-*•·‣▪–—])\s+/.test(raw)) {
       const items = []
 
-      // Collect all list lines
       while (i < lines.length) {
-        const m = lines[i].match(/^([ \t]*)([-*])\s+(.*)/)
+        const m = lines[i].match(/^([ \t]*)([-*•·‣▪–—])\s+(.*)/)
         if (!m) break
 
         const indentSpaces = m[1].length
-        const level = Math.floor(indentSpaces / 2) // 2 spaces = 1 level
+        const level = Math.floor(indentSpaces / 2)
 
         items.push({
           level,
@@ -82,7 +87,6 @@ export default function MarkdownRenderer({ text }) {
         i++
       }
 
-      // Build nested structure
       function build(level) {
         const ul = []
 
@@ -98,9 +102,7 @@ export default function MarkdownRenderer({ text }) {
             <li className="md-li" key={ul.length}>
               <span dangerouslySetInnerHTML={{ __html: item.content }} />
               {children.length > 0 && (
-                <ul className="md-ul">
-                  {build(level + 1)}
-                </ul>
+                <ul className="md-ul">{build(level + 1)}</ul>
               )}
             </li>
           )
