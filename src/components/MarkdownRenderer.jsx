@@ -26,7 +26,7 @@ export default function MarkdownRenderer({ text }) {
 
   while (i < lines.length) {
     const raw = lines[i]
-    const line = raw.trim()
+    const line = raw
 
     // -------------------------
     // CODE BLOCKS (```lang)
