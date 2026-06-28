@@ -71,7 +71,7 @@ export default function MarkdownRenderer({ text }) {
     }
 
     // -------------------------
-    // NESTED LISTS (correct indentation handling)
+    // NESTED LISTS
     // -------------------------
     if (/^(\s*)([-*])\s+/.test(raw)) {
       const items = []
@@ -93,15 +93,15 @@ export default function MarkdownRenderer({ text }) {
       }
 
       // Build nested structure
-      function build(level) {
+      function buildList(startLevel) {
         const ul = []
 
-        while (items.length > 0 && items[0].level === level) {
+        while (items.length > 0 && items[0].level === startLevel) {
           const item = items.shift()
 
           // Collect children
           const children = []
-          while (items.length > 0 && items[0].level > level) {
+          while (items.length > 0 && items[0].level > startLevel) {
             children.push(items.shift())
           }
 
@@ -110,7 +110,7 @@ export default function MarkdownRenderer({ text }) {
               <span dangerouslySetInnerHTML={{ __html: item.content }} />
               {children.length > 0 && (
                 <ul className="md-ul">
-                  {build(level + 1)}
+                  {renderChildren(children, startLevel + 1)}
                 </ul>
               )}
             </li>
@@ -120,9 +120,35 @@ export default function MarkdownRenderer({ text }) {
         return ul
       }
 
+      function renderChildren(children, level) {
+        const local = []
+
+        while (children.length > 0 && children[0].level === level) {
+          const item = children.shift()
+
+          const nested = []
+          while (children.length > 0 && children[0].level > level) {
+            nested.push(children.shift())
+          }
+
+          local.push(
+            <li className="md-li" key={local.length}>
+              <span dangerouslySetInnerHTML={{ __html: item.content }} />
+              {nested.length > 0 && (
+                <ul className="md-ul">
+                  {renderChildren(nested, level + 1)}
+                </ul>
+              )}
+            </li>
+          )
+        }
+
+        return local
+      }
+
       elements.push(
         <ul className="md-ul" key={elements.length}>
-          {build(0)}
+          {buildList(0)}
         </ul>
       )
 
