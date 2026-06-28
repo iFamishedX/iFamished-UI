@@ -71,47 +71,47 @@ export default function MarkdownRenderer({ text }) {
     }
 
     // -------------------------
-    // NESTED LISTS (supports up to 3 levels)
+    // NESTED LISTS (correct indentation handling)
     // -------------------------
     if (/^(\s*)([-*])\s+/.test(raw)) {
-      const listItems = []
-      const baseIndent = raw.match(/^(\s*)/)[1].length
+      const items = []
 
+      // Collect all consecutive list lines
       while (i < lines.length) {
         const m = lines[i].match(/^(\s*)([-*])\s+(.*)/)
         if (!m) break
 
-        const indent = m[1].length
-        const content = renderInline(m[3])
+        const indentSpaces = m[1].length
+        const level = Math.floor(indentSpaces / 2) // 2 spaces = 1 level
 
-        if (indent < baseIndent) break
+        items.push({
+          level,
+          content: renderInline(m[3])
+        })
 
-        listItems.push({ indent, content })
         i++
       }
 
       // Build nested structure
-      function buildList(items, level = 0) {
+      function build(level) {
         const ul = []
 
-        while (items.length > 0) {
-          const item = items[0]
+        while (items.length > 0 && items[0].level === level) {
+          const item = items.shift()
 
-          if (item.indent !== level) break
-
-          items.shift()
-
-          // Check for nested items
-          const nested = []
-          while (items.length > 0 && items[0].indent > level) {
-            nested.push(items.shift())
+          // Collect children
+          const children = []
+          while (items.length > 0 && items[0].level > level) {
+            children.push(items.shift())
           }
 
           ul.push(
             <li className="md-li" key={ul.length}>
               <span dangerouslySetInnerHTML={{ __html: item.content }} />
-              {nested.length > 0 && (
-                <ul className="md-ul">{buildList(nested, level + 2)}</ul>
+              {children.length > 0 && (
+                <ul className="md-ul">
+                  {build(level + 1)}
+                </ul>
               )}
             </li>
           )
@@ -122,7 +122,7 @@ export default function MarkdownRenderer({ text }) {
 
       elements.push(
         <ul className="md-ul" key={elements.length}>
-          {buildList(listItems)}
+          {build(0)}
         </ul>
       )
 
