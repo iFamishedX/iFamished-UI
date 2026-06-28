@@ -10,13 +10,7 @@ export default function MarkdownRenderer({ text }) {
     str = str.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
     str = str.replace(/(^|[^*])\*([^*]+)\*(?!\*)/g, "$1<em>$2</em>")
     str = str.replace(/(^|[^_])_([^_]+)_(?!_)/g, "$1<em>$2</em>")
-    str = str.replace(/
-
-\[([^\]
-
-]+)\]
-
-\(([^)]+)\)/g, "<a href='$2' target='_blank'>$1</a>")
+    str = str.replace(/\[([^\]]+)\]\(([^)]+)\)/g, "<a href='$2' target='_blank'>$1</a>")
     return str
   }
 
