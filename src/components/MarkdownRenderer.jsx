@@ -6,30 +6,20 @@ export default function MarkdownRenderer({ text }) {
   let i = 0
 
   function renderInline(str) {
-    // Inline code: `code`
     str = str.replace(/`([^`]+)`/g, "<code class='md-inline-code'>$1</code>")
-
-    // Bold: **text**
     str = str.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-
-    // Italic: *text* (single asterisk, not bold)
     str = str.replace(/(^|[^*])\*([^*]+)\*(?!\*)/g, "$1<em>$2</em>")
-
-    // Italic: _text_ (single underscore only)
     str = str.replace(/(^|[^_])_([^_]+)_(?!_)/g, "$1<em>$2</em>")
-
-    // Links: [text](url)
     str = str.replace(/\[([^\]]+)\]\(([^)]+)\)/g, "<a href='$2' target='_blank'>$1</a>")
-
     return str
   }
 
   while (i < lines.length) {
     const raw = lines[i]
-    const line = raw
+    const line = raw // DO NOT TRIM — indentation matters
 
     // -------------------------
-    // CODE BLOCKS (```lang)
+    // CODE BLOCKS
     // -------------------------
     if (line.startsWith("```")) {
       const lang = line.slice(3).trim()
@@ -41,7 +31,7 @@ export default function MarkdownRenderer({ text }) {
         i++
       }
 
-      i++ // skip closing ```
+      i++
 
       elements.push(
         <pre className="md-pre" key={elements.length}>
@@ -71,12 +61,12 @@ export default function MarkdownRenderer({ text }) {
     }
 
     // -------------------------
-    // NESTED LISTS
+    // NESTED LISTS (fully working)
     // -------------------------
     if (/^([ \t]*)([-*])\s+/.test(raw)) {
       const items = []
 
-      // Collect all consecutive list lines
+      // Collect all list lines
       while (i < lines.length) {
         const m = lines[i].match(/^([ \t]*)([-*])\s+(.*)/)
         if (!m) break
@@ -93,15 +83,14 @@ export default function MarkdownRenderer({ text }) {
       }
 
       // Build nested structure
-      function buildList(startLevel) {
+      function build(level) {
         const ul = []
 
-        while (items.length > 0 && items[0].level === startLevel) {
+        while (items.length > 0 && items[0].level === level) {
           const item = items.shift()
 
-          // Collect children
           const children = []
-          while (items.length > 0 && items[0].level > startLevel) {
+          while (items.length > 0 && items[0].level > level) {
             children.push(items.shift())
           }
 
@@ -110,7 +99,7 @@ export default function MarkdownRenderer({ text }) {
               <span dangerouslySetInnerHTML={{ __html: item.content }} />
               {children.length > 0 && (
                 <ul className="md-ul">
-                  {renderChildren(children, startLevel + 1)}
+                  {build(level + 1)}
                 </ul>
               )}
             </li>
@@ -120,35 +109,9 @@ export default function MarkdownRenderer({ text }) {
         return ul
       }
 
-      function renderChildren(children, level) {
-        const local = []
-
-        while (children.length > 0 && children[0].level === level) {
-          const item = children.shift()
-
-          const nested = []
-          while (children.length > 0 && children[0].level > level) {
-            nested.push(children.shift())
-          }
-
-          local.push(
-            <li className="md-li" key={local.length}>
-              <span dangerouslySetInnerHTML={{ __html: item.content }} />
-              {nested.length > 0 && (
-                <ul className="md-ul">
-                  {renderChildren(nested, level + 1)}
-                </ul>
-              )}
-            </li>
-          )
-        }
-
-        return local
-      }
-
       elements.push(
         <ul className="md-ul" key={elements.length}>
-          {buildList(0)}
+          {build(0)}
         </ul>
       )
 
@@ -161,13 +124,11 @@ export default function MarkdownRenderer({ text }) {
     if (line.includes("|") && lines[i + 1]?.includes("|---")) {
       const header = line.split("|").map(c => c.trim()).filter(Boolean)
       i++
-      i++ // skip separator row
+      i++
 
       const rows = []
       while (i < lines.length && lines[i].includes("|")) {
-        rows.push(
-          lines[i].split("|").map(c => c.trim()).filter(Boolean)
-        )
+        rows.push(lines[i].split("|").map(c => c.trim()).filter(Boolean))
         i++
       }
 
@@ -195,10 +156,10 @@ export default function MarkdownRenderer({ text }) {
     }
 
     // -------------------------
-    // PARAGRAPHS
+    // PARAGRAPHS (MUST BE LAST)
     // -------------------------
-    if (line.length > 0) {
-      const buffer = [renderInline(line)]
+    if (line.trim().length > 0) {
+      const buffer = [renderInline(line.trim())]
       i++
 
       while (i < lines.length && lines[i].trim().length > 0) {
