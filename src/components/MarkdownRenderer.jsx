@@ -73,12 +73,12 @@ export default function MarkdownRenderer({ text }) {
     // -------------------------
     // NESTED LISTS
     // -------------------------
-    if (/^(\s*)([-*])\s+/.test(raw)) {
+    if (/^([ \t]*)([-*])\s+/.test(raw)) {
       const items = []
 
       // Collect all consecutive list lines
       while (i < lines.length) {
-        const m = lines[i].match(/^(\s*)([-*])\s+(.*)/)
+        const m = lines[i].match(/^([ \t]*)([-*])\s+(.*)/)
         if (!m) break
 
         const indentSpaces = m[1].length
