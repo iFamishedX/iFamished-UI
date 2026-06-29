@@ -391,3 +391,12 @@
   align-items: center;
   gap: var(--space-2);
 }
+
+.compare-card-header h3 {
+  margin: 0;
+  line-height: 1;
+}
+
+.compare-card-header .icon-badge {
+  padding: 0;
+}
