@@ -31,7 +31,7 @@
 
 /* ===== Base HTML ===== */
 html {
-  scroll-behavior: auto;
+  scroll-behavior: smooth;
   overscroll-behavior: none;
   background: #000;
 }
@@ -85,7 +85,7 @@ ul { list-style: none; }
 .page {
   padding-top: var(--space-6);
   padding-bottom: var(--space-6);
-  min-height: calc(100vh - 72px - 240px);
+  min-height: 100vh;
 }
 
 .section { margin-bottom: var(--space-5); }
