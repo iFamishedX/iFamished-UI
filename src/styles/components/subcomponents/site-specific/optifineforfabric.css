@@ -395,8 +395,6 @@
 .compare-card-header h3 {
   margin: 0;
   line-height: 1;
-}
-
-.compare-card-header .icon-badge {
-  padding: 0;
+  display: flex;          /* ← THIS is the missing piece */
+  align-items: center;    /* ← centers text inside its own box */
 }
