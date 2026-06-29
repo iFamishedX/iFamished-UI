@@ -13,19 +13,45 @@ export default function Navbar({
   const toggleMenu = () => setOpen((v) => !v)
   const closeMenu = () => setOpen(false)
 
-  useEffect(() => {
+  // ---- Underline positioning logic (fixed) ----
+  const updateUnderline = () => {
     const active = document.querySelector(".navbar-link.active")
     const underline = underlineRef.current
 
-    if (active && underline) {
-      const rect = active.getBoundingClientRect()
-      const parentRect = active.parentElement.parentElement.getBoundingClientRect()
+    if (!active || !underline) return
 
-      underline.style.width = `${rect.width}px`
-      underline.style.transform = `translateX(${rect.left - parentRect.left}px)`
-      underline.style.opacity = 1
-    }
+    const rect = active.getBoundingClientRect()
+    const parentRect = active.parentElement.parentElement.getBoundingClientRect()
+
+    underline.style.width = `${rect.width}px`
+    underline.style.transform = `translateX(${rect.left - parentRect.left}px)`
+    underline.style.opacity = 1
+  }
+
+  useEffect(() => {
+    // Wait for fonts + layout stabilization
+    document.fonts.ready.then(() => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          updateUnderline()
+        })
+      })
+    })
   }, [location.pathname])
+
+  // Recalculate underline on resize (fixes DPI scaling + zoom)
+  useEffect(() => {
+    const handleResize = () => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          updateUnderline()
+        })
+      })
+    }
+
+    window.addEventListener("resize", handleResize)
+    return () => window.removeEventListener("resize", handleResize)
+  }, [])
 
   return (
     <nav className="navbar">
