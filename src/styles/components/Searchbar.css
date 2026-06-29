@@ -27,7 +27,7 @@
 
 @keyframes searchbarBlurIn {
   from {
-    transform: translateY(10px);
+    transform: translateY(-10px);
     filter: opacity(0) blur(8px) brightness(0.6);
   }
   to {
