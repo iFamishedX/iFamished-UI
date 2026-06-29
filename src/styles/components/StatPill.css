@@ -12,8 +12,10 @@
   flex-direction: column;
   align-items: center;
   padding: var(--space-2) var(--space-3);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  --local-glass-bg: var(--glass-bg);
+  --local-glass-border: var(--glass-border);
+  background: var(--local-glass-bg);
+  border: 1px solid var(--local-glass-border);
   border-radius: var(--radius-md);
   backdrop-filter: blur(12px);
   min-width: 90px;
