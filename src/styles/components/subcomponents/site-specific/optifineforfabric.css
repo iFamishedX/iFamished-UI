@@ -385,3 +385,8 @@
   flex: 0 0 auto;
   justify-content: center;
 }
+
+.compare-card-header {
+  display: flex;
+  align-items: center;
+}
