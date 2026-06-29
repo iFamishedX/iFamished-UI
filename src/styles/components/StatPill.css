@@ -4,7 +4,7 @@
   justify-content: center;
   flex-wrap: wrap;
   margin-top: var(--space-4);
-  animation: fadeInUpNoOpacity 0.7s 0.25s var(--ease) both;
+  animation: statPillFadeIn 0.7s 0.25s var(--ease) both !important;
 }
 
 .stat-pill {
@@ -49,12 +49,7 @@
   font-family: var(--mono);
 }
 
-@keyframes fadeInUpNoOpacity {
-  from {
-    transform: translateY(20px);
-  }
-  to {
-    transform: translateY(0);
-  }
+@keyframes statPillFadeIn {
+  from { transform: translateY(24px); }
+  to { transform: translateY(0); }
 }
-
