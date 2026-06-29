@@ -17,7 +17,11 @@
   border-radius: var(--radius-md);
   backdrop-filter: blur(12px);
   min-width: 90px;
-  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+  transition-property: border-color, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: var(--ease);
+  will-change: transform;
+  transform: translateZ(0);
 }
 
 .stat-pill:hover {
