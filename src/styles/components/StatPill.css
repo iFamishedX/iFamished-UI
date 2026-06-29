@@ -57,10 +57,10 @@
 @keyframes statPillFadeIn {
   from {
     transform: translateY(24px);
-    filter: brightness(0.4);
+    filter: opacity(0);
   }
   to {
     transform: translateY(0);
-    filter: brightness(1);
+    filter: opacity(1);
   }
 }
