@@ -55,6 +55,12 @@
 }
 
 @keyframes statPillFadeIn {
-  from { transform: translateY(24px); }
-  to { transform: translateY(0); }
+  from {
+    transform: translateY(24px);
+    filter: brightness(0.4);
+  }
+  to {
+    transform: translateY(0);
+    filter: brightness(1);
+  }
 }
