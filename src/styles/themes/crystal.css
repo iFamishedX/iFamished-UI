@@ -1,0 +1,64 @@
+:root {
+  /* Accent */
+  --accent-1: #c8f3ff;   /* pastel cyan */
+  --accent-2: #d9c8ff;   /* lavender */
+  --accent-3: #ffc8f3;   /* pastel pink */
+
+  /* Accent glows */
+  --accent-glow-1: rgba(200, 243, 255, 0.45);
+  --accent-glow-2: rgba(217, 200, 255, 0.4);
+
+  /* Glass */
+  --glass-bg: rgba(200, 243, 255, 0.06);
+  --glass-bg-strong: rgba(200, 243, 255, 0.12);
+  --glass-border: rgba(217, 200, 255, 0.25);
+  --glass-border-strong: rgba(217, 200, 255, 0.45);
+  --glass-shadow: rgba(0, 0, 0, 0.35) 0 8px 32px;
+
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: #e8e8ff;
+  --text-muted: #b8b8d1;
+
+  /* Background gradient stops */
+  --bg-1: #f5fcff;  /* icy white */
+  --bg-2: #e8f4ff;  /* pastel blue */
+  --bg-3: #f3e8ff;  /* lavender */
+  --bg-4: #e8d9ff;  /* soft purple */
+
+  /* Ambient glows */
+  --glow-1: rgba(200, 243, 255, 0.12);
+  --glow-2: rgba(217, 200, 255, 0.14);
+  --glow-3: rgba(255, 200, 243, 0.1);
+
+  /* Navbar / footer */
+  --navbar-bg: rgba(245, 252, 255, 0.55);
+  --navbar-bg-mobile: rgba(245, 252, 255, 0.85);
+  --footer-bg: rgba(245, 252, 255, 0.4);
+
+  /* Buttons */
+  --btn-primary-start: rgba(200, 243, 255, 0.25);
+  --btn-primary-end: rgba(217, 200, 255, 0.2);
+  --btn-primary-hover-start: rgba(200, 243, 255, 0.4);
+  --btn-primary-hover-end: rgba(217, 200, 255, 0.35);
+  --btn-primary-shadow: rgba(200, 243, 255, 0.45);
+  --btn-border: rgba(217, 200, 255, 0.5);
+  --btn-hover-shadow: rgba(200, 243, 255, 0.25);
+
+  /* Tags */
+  --tag-bg: rgba(217, 200, 255, 0.1);
+  --tag-border: rgba(217, 200, 255, 0.25);
+  --tag-text: #ffc8f3;
+
+  /* Focus */
+  --focus-outline: #ffc8f3;
+  --focus-ring: rgba(200, 243, 255, 0.15);
+
+  /* Hover glow */
+  --hover-glow: rgba(200, 243, 255, 0.12);
+
+  /* Links */
+  --link-color: rgba(200, 243, 255, 0.9);
+  --link-hover-color: rgba(217, 200, 255, 0.8);
+  --link-visited-color: rgba(200, 243, 255, 0.65);
+}
