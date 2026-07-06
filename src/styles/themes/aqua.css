@@ -53,4 +53,9 @@
 
   /* Hover glow */
   --hover-glow: rgba(34, 211, 238, 0.12);
+
+  /* Links */
+  --link-color: var(--neon-cyan);
+  --link-hover-color: var(--neon-blue);
+  --link-visited-color: rgba(34, 211, 238, 0.65);
 }
