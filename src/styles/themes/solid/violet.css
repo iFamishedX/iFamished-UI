@@ -2,6 +2,7 @@
   /* Accent (gradient-text) */
   --accent-1: #a56bff;   /* bright violet */
   --accent-2: #6d28d9;   /* deep royal purple */
+  --accent-3: #85068a;   /* neon pink */
 
   /* Accent glows */
   --accent-glow-1: rgba(165, 107, 255, 0.45);
