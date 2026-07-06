@@ -3,7 +3,7 @@
   height: 120px;
   margin: 0 auto var(--space-3);
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-1), var(--neon-blue));
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -23,5 +23,5 @@
 }
 
 .profile-name { margin-bottom: var(--space-1); }
-.profile-tagline { color: var(--accent-1); font-weight: 500; margin-bottom: var(--space-3); }
+.profile-tagline { color: var(--neon-cyan); font-weight: 500; margin-bottom: var(--space-3); }
 .profile-bio p { margin-bottom: var(--space-2); text-align: left; }

@@ -21,7 +21,7 @@
 
 .searchbar input:focus {
   outline: none;
-  border-color: var(--accent-1);
+  border-color: var(--neon-cyan);
   background: var(--glass-bg-strong);
 }
 

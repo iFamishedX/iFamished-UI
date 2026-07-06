@@ -44,12 +44,12 @@
 
 .faq-accordion--open .faq-question,
 .faq-accordion:hover .faq-question {
-  color: var(--accent-1);
+  color: var(--neon-cyan);
 }
 
 .faq-chevron {
   flex-shrink: 0;
-  color: var(--accent-1);
+  color: var(--neon-cyan);
   display: flex;
   align-items: center;
   transition: transform 0.35s var(--ease), color 0.2s;

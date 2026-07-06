@@ -13,7 +13,7 @@
   top: 0;
   bottom: 0;
   width: 3px;
-  background: var(--accent-1);
+  background: var(--neon-cyan);
   opacity: 0.35;
 }
 
@@ -28,8 +28,8 @@
 
   background: radial-gradient(
     circle at center,
-    var(--accent-1) 0%,
-    var(--accent-1) 40%,
+    var(--neon-cyan) 0%,
+    var(--neon-cyan) 40%,
     transparent 70%
   );
 
