@@ -1,0 +1,61 @@
+:root {
+  /* Accent */
+  --accent-1: #c084fc; /* neon lavender */
+  --accent-2: #9333ea; /* ultraviolet */
+  --accent-glow-1: rgba(192, 132, 252, 0.45);
+  --accent-glow-2: rgba(147, 51, 234, 0.4);
+
+  /* Glass */
+  --glass-bg: rgba(147, 51, 234, 0.06);
+  --glass-bg-strong: rgba(147, 51, 234, 0.12);
+  --glass-border: rgba(147, 51, 234, 0.22);
+  --glass-border-strong: rgba(147, 51, 234, 0.38);
+  --glass-shadow: rgba(0, 0, 0, 0.45) 0 8px 32px;
+
+  /* Text */
+  --text-primary: #f5f3ff;
+  --text-secondary: #e9d5ff;
+  --text-muted: #c4b5fd;
+
+  /* Background gradient stops */
+  --bg-1: #0b0018;
+  --bg-2: #15002c;
+  --bg-3: #210045;
+  --bg-4: #12002a;
+
+  /* Ambient glows */
+  --glow-1: rgba(192, 132, 252, 0.08);
+  --glow-2: rgba(147, 51, 234, 0.12);
+  --glow-3: rgba(88, 28, 135, 0.1);
+
+  /* Navbar / footer */
+  --navbar-bg: rgba(11, 0, 24, 0.55);
+  --navbar-bg-mobile: rgba(11, 0, 24, 0.85);
+  --footer-bg: rgba(11, 0, 24, 0.4);
+
+  /* Buttons */
+  --btn-primary-start: rgba(192, 132, 252, 0.25);
+  --btn-primary-end: rgba(147, 51, 234, 0.2);
+  --btn-primary-hover-start: rgba(192, 132, 252, 0.4);
+  --btn-primary-hover-end: rgba(147, 51, 234, 0.35);
+  --btn-primary-shadow: rgba(192, 132, 252, 0.45);
+  --btn-border: rgba(192, 132, 252, 0.5);
+  --btn-hover-shadow: rgba(192, 132, 252, 0.25);
+
+  /* Tags */
+  --tag-bg: rgba(192, 132, 252, 0.1);
+  --tag-border: rgba(192, 132, 252, 0.25);
+  --tag-text: #c084fc;
+
+  /* Focus */
+  --focus-outline: #c084fc;
+  --focus-ring: rgba(192, 132, 252, 0.15);
+
+  /* Hover glow */
+  --hover-glow: rgba(192, 132, 252, 0.12);
+
+  /* Links */
+  --link-color: rgba(192, 132, 252, 0.9);
+  --link-hover-color: rgba(147, 51, 234, 0.8);
+  --link-visited-color: rgba(192, 132, 252, 0.65);
+}
