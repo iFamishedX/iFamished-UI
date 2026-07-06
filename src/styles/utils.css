@@ -1,6 +1,11 @@
 /* Gradient text utility */
 .gradient-text {
-  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  background: linear-gradient(
+    90deg,
+    var(--accent-1),
+    var(--accent-2),
+    var(--accent-3)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -136,7 +141,10 @@ h1, h2, h3, h4 {
 .glass-card:hover .icon-badge {
   background: var(--glass-bg-strong);
   border-color: var(--glass-border-strong);
-  box-shadow: 0 0 16px var(--accent-glow-1);
+  box-shadow:
+    0 0 16px var(--accent-glow-1),
+    0 0 32px var(--accent-glow-2),
+    0 0 48px var(--accent-3);
 }
 
 /* ------------------------------------------------------------------ */
