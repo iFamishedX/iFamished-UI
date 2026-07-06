@@ -1,0 +1,63 @@
+:root {
+  /* Accent */
+  --neon-cyan: #4fa3c6;   /* graphite cyan */
+  --neon-blue: #2e5f78;   /* steel blue */
+
+  /* Accent glows */
+  --neon-glow: rgba(79, 163, 198, 0.45);
+  --neon-blue-glow: rgba(46, 95, 120, 0.4);
+
+  /* Glass */
+  --glass-bg: rgba(46, 95, 120, 0.06);
+  --glass-bg-strong: rgba(46, 95, 120, 0.12);
+  --glass-border: rgba(79, 163, 198, 0.25);
+  --glass-border-strong: rgba(79, 163, 198, 0.45);
+  --glass-shadow: rgba(0, 0, 0, 0.55) 0 8px 32px;
+
+  /* Text */
+  --text-primary: #f2f5f7;
+  --text-secondary: #c7d0d6;
+  --text-muted: #8b9499;
+
+  /* Background gradient stops */
+  --bg-1: #000000;
+  --bg-2: #050505;
+  --bg-3: #0a0a0a;
+  --bg-4: #020202;
+
+  /* Ambient glows */
+  --glow-1: rgba(79, 163, 198, 0.12);
+  --glow-2: rgba(46, 95, 120, 0.14);
+  --glow-3: rgba(20, 30, 40, 0.1);
+
+  /* Navbar / footer */
+  --navbar-bg: rgba(0, 0, 0, 0.55);
+  --navbar-bg-mobile: rgba(0, 0, 0, 0.85);
+  --footer-bg: rgba(0, 0, 0, 0.4);
+
+  /* Buttons */
+  --btn-primary-start: rgba(79, 163, 198, 0.25);
+  --btn-primary-end: rgba(46, 95, 120, 0.2);
+  --btn-primary-hover-start: rgba(79, 163, 198, 0.4);
+  --btn-primary-hover-end: rgba(46, 95, 120, 0.35);
+  --btn-primary-shadow: rgba(79, 163, 198, 0.45);
+  --btn-border: rgba(79, 163, 198, 0.5);
+  --btn-hover-shadow: rgba(79, 163, 198, 0.25);
+
+  /* Tags */
+  --tag-bg: rgba(46, 95, 120, 0.1);
+  --tag-border: rgba(46, 95, 120, 0.25);
+  --tag-text: #4fa3c6;
+
+  /* Focus */
+  --focus-outline: #4fa3c6;
+  --focus-ring: rgba(79, 163, 198, 0.15);
+
+  /* Hover glow */
+  --hover-glow: rgba(79, 163, 198, 0.12);
+
+  /* Links */
+  --link-color: rgba(79, 163, 198, 0.9);
+  --link-hover-color: rgba(46, 95, 120, 0.8);
+  --link-visited-color: rgba(79, 163, 198, 0.65);
+}
