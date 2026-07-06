@@ -38,8 +38,8 @@
 }
 
 .footer-social a:hover {
-  color: var(--neon-cyan);
-  border-color: var(--neon-cyan);
+  color: var(--accent-1);
+  border-color: var(--accent-1);
   box-shadow: 0 0 16px var(--neon-glow);
   transform: translateY(-2px);
 }

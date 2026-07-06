@@ -31,6 +31,6 @@
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: var(--neon-cyan);
+  border-color: var(--accent-1);
   box-shadow: 0 0 0 3px var(--focus-ring, rgba(34,211,238,0.15));
 }

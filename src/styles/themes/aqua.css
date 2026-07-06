@@ -1,9 +1,9 @@
 :root {
   /* Accent */
-  --neon-cyan: #22d3ee;
-  --neon-blue: #3b82f6;
-  --neon-glow: rgba(34, 211, 238, 0.45);
-  --neon-blue-glow: rgba(59, 130, 246, 0.4);
+  --accent-1: #22d3ee;
+  --accent-2: #3b82f6;
+  --accent-glow-1: rgba(34, 211, 238, 0.45);
+  --accent-glow-2: rgba(59, 130, 246, 0.4);
 
   /* Glass */
   --glass-bg: rgba(34, 211, 238, 0.08);
@@ -45,10 +45,10 @@
   /* Tags */
   --tag-bg: rgba(34, 211, 238, 0.1);
   --tag-border: rgba(34, 211, 238, 0.25);
-  --tag-text: var(--neon-cyan);
+  --tag-text: var(--accent-1);
 
   /* Focus */
-  --focus-outline: var(--neon-cyan);
+  --focus-outline: var(--accent-1);
   --focus-ring: rgba(34, 211, 238, 0.15);
 
   /* Hover glow */

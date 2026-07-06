@@ -114,7 +114,7 @@
 }
 
 .dropdown-item.active {
-  color: var(--neon-cyan);
+  color: var(--accent-1);
   font-weight: 600;
 }
 

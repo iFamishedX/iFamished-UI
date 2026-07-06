@@ -41,7 +41,7 @@
 .glass-btn:hover {
   transform: translateY(-2px);
   background: var(--glass-bg-strong);
-  border-color: var(--btn-border, var(--neon-cyan));
+  border-color: var(--btn-border, var(--accent-1));
   box-shadow: 0 0 20px var(--btn-hover-shadow, var(--neon-glow));
 }
 
@@ -52,7 +52,7 @@
 .glass-btn:active { transform: translateY(0); }
 
 .glass-btn:focus-visible {
-  outline: 2px solid var(--focus-outline, var(--neon-cyan));
+  outline: 2px solid var(--focus-outline, var(--accent-1));
   outline-offset: 2px;
 }
 
