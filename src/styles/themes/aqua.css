@@ -55,7 +55,7 @@
   --hover-glow: rgba(34, 211, 238, 0.12);
 
   /* Links */
-  --link-color: var(--neon-cyan);
-  --link-hover-color: var(--neon-blue);
+  --link-color: rgba(59, 134, 246, 0.9);
+  --link-hover-color: rgba(34, 211, 238, 0.8);
   --link-visited-color: rgba(34, 211, 238, 0.65);
 }
