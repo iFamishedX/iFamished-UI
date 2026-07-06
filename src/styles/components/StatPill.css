@@ -39,7 +39,7 @@
 .stat-pill-value {
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--neon-cyan);
+  color: var(--accent-1);
   line-height: 1;
   letter-spacing: -0.02em;
 }

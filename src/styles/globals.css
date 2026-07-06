@@ -103,8 +103,8 @@ ul { list-style: none; }
 }
 
 @keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 20px var(--neon-glow), 0 0 40px transparent; }
-  50% { box-shadow: 0 0 30px var(--neon-glow), 0 0 60px rgba(34, 211, 238, 0.15); }
+  0%, 100% { box-shadow: 0 0 20px var(--accent-glow-1), 0 0 40px transparent; }
+  50% { box-shadow: 0 0 30px var(--accent-glow-1), 0 0 60px rgba(34, 211, 238, 0.15); }
 }
 
 .fade-in-up { animation: fadeInUp 0.7s var(--ease) both; }

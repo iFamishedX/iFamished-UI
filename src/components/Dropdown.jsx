@@ -157,7 +157,7 @@ export default function Dropdown({ label, value, options, onChange }) {
 
     return formatted.replace(
       new RegExp(`^(${typed})`, "i"),
-      `<strong style="color: var(--neon-cyan)">$1</strong>`
+      `<strong style="color: var(--accent-1)">$1</strong>`
     )
   }
 

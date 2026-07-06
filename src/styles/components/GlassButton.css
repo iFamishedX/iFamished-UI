@@ -33,7 +33,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, var(--neon-glow), transparent 70%);
+  background: radial-gradient(circle at center, var(--accent-glow-1), transparent 70%);
   opacity: 0;
   transition: opacity 0.3s var(--ease);
 }
@@ -41,8 +41,8 @@
 .glass-btn:hover {
   transform: translateY(-2px);
   background: var(--glass-bg-strong);
-  border-color: var(--btn-border, var(--neon-cyan));
-  box-shadow: 0 0 20px var(--btn-hover-shadow, var(--neon-glow));
+  border-color: var(--btn-border, var(--accent-1));
+  box-shadow: 0 0 20px var(--btn-hover-shadow, var(--accent-glow-1));
 }
 
 .glass-btn:hover::after {
@@ -52,7 +52,7 @@
 .glass-btn:active { transform: translateY(0); }
 
 .glass-btn:focus-visible {
-  outline: 2px solid var(--focus-outline, var(--neon-cyan));
+  outline: 2px solid var(--focus-outline, var(--accent-1));
   outline-offset: 2px;
 }
 

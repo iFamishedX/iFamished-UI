@@ -1,11 +1,11 @@
 :root {
   /* Accent (gradient-text) */
-  --neon-cyan: #a56bff;   /* bright violet */
-  --neon-blue: #6d28d9;   /* deep royal purple */
+  --accent-1: #a56bff;   /* bright violet */
+  --accent-2: #6d28d9;   /* deep royal purple */
 
   /* Accent glows */
-  --neon-glow: rgba(165, 107, 255, 0.45);
-  --neon-blue-glow: rgba(109, 40, 217, 0.4);
+  --accent-glow-1: rgba(165, 107, 255, 0.45);
+  --accent-glow-2: rgba(109, 40, 217, 0.4);
 
   /* Glass */
   --glass-bg: rgba(165, 107, 255, 0.08);

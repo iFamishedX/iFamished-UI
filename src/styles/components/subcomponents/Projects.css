@@ -35,8 +35,8 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--neon-cyan);
-  box-shadow: 0 0 8px var(--neon-glow);
+  background: var(--accent-1);
+  box-shadow: 0 0 8px var(--accent-glow-1);
 }
 
 /* Grid */

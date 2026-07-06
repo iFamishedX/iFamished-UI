@@ -6,7 +6,7 @@
   border-radius: 6px;
   background: var(--tag-bg, rgba(34,211,238,0.1));
   border: 1px solid var(--tag-border, rgba(34,211,238,0.25));
-  color: var(--tag-text, var(--neon-cyan));
+  color: var(--tag-text, var(--accent-1));
   display: inline-flex; /* or inline-block */
 }
 

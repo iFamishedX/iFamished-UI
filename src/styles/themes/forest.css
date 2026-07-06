@@ -1,11 +1,11 @@
 :root {
   /* Accent */
-  --neon-cyan: #4fd1a8;   /* teal */
-  --neon-blue: #2ea36f;   /* emerald */
+  --accent-1: #4fd1a8;   /* teal */
+  --accent-2: #2ea36f;   /* emerald */
 
   /* Accent glows */
-  --neon-glow: rgba(79, 209, 168, 0.45);
-  --neon-blue-glow: rgba(46, 163, 111, 0.4);
+  --accent-glow-1: rgba(79, 209, 168, 0.45);
+  --accent-glow-2: rgba(46, 163, 111, 0.4);
 
   /* Glass */
   --glass-bg: rgba(46, 163, 111, 0.06);
