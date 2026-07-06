@@ -2,6 +2,7 @@
   /* Accent */
   --accent-1: #4fa3c6;   /* graphite cyan */
   --accent-2: #2e5f78;   /* steel blue */
+  --accent-3: #7fc8e8;   /* bright cyan highlight */
 
   /* Accent glows */
   --accent-glow-1: rgba(79, 163, 198, 0.45);
@@ -19,11 +20,11 @@
   --text-secondary: #c7d0d6;
   --text-muted: #8b9499;
 
-  /* Background gradient stops */
-  --bg-1: #000000;
-  --bg-2: #050505;
-  --bg-3: #0a0a0a;
-  --bg-4: #020202;
+  /* Background gradient stops (more variation) */
+  --bg-1: #000000;  /* pure black */
+  --bg-2: #0a0a0a;  /* charcoal */
+  --bg-3: #141414;  /* graphite */
+  --bg-4: #050505;  /* deep black */
 
   /* Ambient glows */
   --glow-1: rgba(79, 163, 198, 0.12);
