@@ -1,5 +1,5 @@
 import { useTheme } from "./ThemeProvider";
-import { GlassButton } from "./GlassButton";
+import GlassButton from "./GlassButton";
 
 const THEME_CATEGORIES = {
   "cold-blue": ["arc", "glacier", "tundra"],
