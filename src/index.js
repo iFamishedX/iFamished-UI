@@ -10,10 +10,6 @@ export { default as Navbar } from "./components/Navbar"
 export { default as ScrollToTop } from "./components/ScrollToTop"
 export { default as Searchbar } from "./components/Searchbar"
 export { default as StatPill } from "./components/StatPill"
-export { ThemeProvider, useTheme } from "./components/ThemeProvider";
-export { default as ThemeSwitcher } from "./components/ThemeSwitcher";
-
-
 
 // Export hooks
 export * from "./hooks/usePageTitle"
