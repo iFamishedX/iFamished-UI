@@ -2,11 +2,10 @@ import { useTheme } from "./ThemeProvider";
 import { GlassButton } from "./GlassButton";
 
 const THEME_CATEGORIES = {
-  solid: ["violet", "obsidian", "forest", "glacier"],
-  neon: ["nebula", "plasma", "ion", "arc", "synthwave"],
-  aurora: ["aurora", "tundra", "frost"],
-  sunset: ["sunset", "ember", "horizon"],
-  galaxy: ["galaxy", "dream", "prism"],
+  "cold-blue": ["arc", "glacier", "tundra"],
+  "fire": ["ember", "flare"],
+  "premium": ["aurora", "dream", "galaxy", "nebula", "plasma"],
+  "solid": ["aqua", "emerald", "obsidian", "violet"]
 };
 
 export default function ThemeSwitcher() {
