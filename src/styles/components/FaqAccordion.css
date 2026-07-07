@@ -21,7 +21,7 @@
 }
 
 .faq-accordion--open {
-  border-color: var(--accent-3) !important;
+  border-color: var(--accent-2) !important;
   box-shadow: var(--glass-shadow), 0 0 20px var(--hover-glow) !important;
 }
 
