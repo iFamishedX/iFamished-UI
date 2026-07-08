@@ -3,6 +3,7 @@
 @import "./utils.css";
 
 /* Components */
+@import "./components/CopyField.css";
 @import "./components/Dropdown.css";
 @import "./components/FaqAccordion.css";
 @import "./components/Footer.css";

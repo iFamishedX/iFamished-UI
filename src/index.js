@@ -1,4 +1,5 @@
 // Export components
+export { default as CopyField } from "./components/CopyField";
 export { default as Dropdown } from "./components/Dropdown"
 export { default as FaqAccordion } from "./components/FaqAccordion"
 export { default as Footer } from "./components/Footer"
