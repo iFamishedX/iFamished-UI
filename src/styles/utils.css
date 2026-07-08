@@ -11,6 +11,17 @@
   -webkit-text-fill-color: transparent;
 }
 
+.gradient-text-minimal {
+  background: linear-gradient(
+    90deg,
+    var(--accent-1),
+    var(--accent-2)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* Default heading colors */
 h1, h2, h3, h4 {
   color: var(--text-primary);
