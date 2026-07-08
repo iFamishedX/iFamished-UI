@@ -7,7 +7,7 @@ export default function InputBox({ value, onChange, placeholder }) {
         type="text"
         placeholder={placeholder}
         value={value}
-        onChange={e => onChange(e.target.value)}
+        onChange={(e) => onChange(e.target.value)}
       />
     </div>
   );
