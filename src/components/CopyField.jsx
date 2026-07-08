@@ -12,8 +12,10 @@ export default function CopyField({ label, value }) {
 
   return (
     <div className="copyfield">
-      <div className="copyfield-label">{label}</div>
-      <div className="copyfield-value">{value}</div>
+      <div className="copyfield-left">
+        <div className="copyfield-label">{label}</div>
+        <div className="copyfield-value">{value}</div>
+      </div>
 
       <GlassButton
         size="sm"

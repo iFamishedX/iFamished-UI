@@ -1,18 +1,23 @@
 .copyfield {
   display: grid;
   grid-template-columns: 1fr auto;
-  row-gap: 4px;
-  column-gap: var(--space-3);
+  align-items: center;
+  gap: var(--space-3);
   padding: var(--space-3);
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-sm);
   backdrop-filter: blur(12px);
-  margin-bottom: var(--space-3);
+}
+
+.copyfield-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .copyfield-label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--text-secondary);
 }
 
@@ -24,7 +29,5 @@
 }
 
 .copyfield-btn {
-  align-self: center;
-  justify-self: end;
   padding: 4px 8px;
 }
