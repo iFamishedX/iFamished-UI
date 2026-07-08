@@ -1,7 +1,7 @@
 import { GlassButton, Icon } from "ifamished-ui";
 import { useState } from "react";
 
-export default function CopyField({ label, value }) {
+export default function CopyField({ label, value, displayValue }) {
   const [copied, setCopied] = useState(false);
 
   const copy = () => {
@@ -14,7 +14,9 @@ export default function CopyField({ label, value }) {
     <div className="copyfield">
       <div className="copyfield-left">
         <div className="copyfield-label">{label}</div>
-        <div className="copyfield-value">{value}</div>
+        <div className="copyfield-value">
+          {displayValue || value}
+        </div>
       </div>
 
       <GlassButton
